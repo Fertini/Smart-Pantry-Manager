@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="cornsilk">#FEFAE0</color>
+    <color name="blush_pop">#FF58AC</color>
+    <color name="pink_orchid">#CDB4DB</color>
+    <color name="mint_cream">#F7FFF7</color>
+    <color name="grapefruit_pink">#FF6B6B</color>
+    <color name="light_gold">#F4E285</color>
+    <color name="bright_orange">#FF9F1C</color>
+    <color name="sky_blue">#2EC4B6</color>
 </resources>

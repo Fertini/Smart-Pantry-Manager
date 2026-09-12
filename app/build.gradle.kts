@@ -38,6 +38,7 @@ android {
 
 dependencies {
     implementation(libs.activity.ktx)
+    implementation(libs.androidx.appcompat)
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
     implementation(libs.material)
@@ -46,4 +47,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
+    // Source: https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
+    implementation("org.xerial:sqlite-jdbc:3.53.4.0")
 }
