@@ -5,28 +5,31 @@ public class Recipe {
     String name;
     String description;
     ArrayList<String> ingredients;
+    ArrayList<String> instructions;
     String duration;
     int servingSize;
-    double calories;
+    String calories;
 
     // =============== constructors =================== //
 
     // constructor for db
-    public Recipe(int recipeId, String name, String description, ArrayList<String> ingredients, String duration, int servingSize, double calories){
+    public Recipe(int recipeId, String name, String description, ArrayList<String> ingredients, ArrayList<String> instructions, String duration, int servingSize, String calories){
         this.recipeId = recipeId;
         this.name = name;
         this.description = description;
         this.ingredients = ingredients;
+        this.instructions = instructions;
         this.duration = duration;
         this.servingSize = servingSize;
         this.calories = calories;
     }
 
     // constructor for new recipes
-    public Recipe(String name, String description, ArrayList<String> ingredients, String duration, int servingSize, double calories){
+    public Recipe(String name, String description, ArrayList<String> ingredients, ArrayList<String> instructions, String duration, int servingSize, String calories){
         this.name = name;
         this.description = description;
         this.ingredients = ingredients;
+        this.instructions = instructions;
         this.duration = duration;
         this.servingSize = servingSize;
         this.calories = calories;
@@ -37,18 +40,20 @@ public class Recipe {
     public String getName(){return name;}
     public String getDescription(){return description;}
     public ArrayList<String> getIngredients(){return ingredients;}
+    public ArrayList<String> getInstructions(){return ingredients;}
     public String getDuration(){return duration;}
     public int getServingSize(){return servingSize;}
-    public double getCalories(){return calories;}
+    public String getCalories(){return calories;}
 
     // ================ setters ====================== //
     public void setRecipeId(int recipeId){this.recipeId = recipeId;}
     public void setName(String name){this.name = name;}
     public void setDescription(String description){this.description = description;}
     public void setIngredients(ArrayList<String> ingredients){this.ingredients = ingredients;}
+    public void setInstructions(ArrayList<String> instructions){this.instructions = instructions;}
     public void setDuration(String duration){this.duration = duration;}
     public void setServingSize(int servingSize){this.servingSize = servingSize;}
-    public void setCalories(double calories){this.calories = calories;}
+    public void setCalories(String calories){this.calories = calories;}
 
     // ==================== methods ======================= //
 
@@ -57,6 +62,7 @@ public class Recipe {
         return "Name: " + name +
                 "\nDescription: " + description +
                 "\nIngredients: " + ingredients +
+                "\nInstructions: " + instructions +
                 "\nDuration: " + duration +
                 "\nServing Size: " + servingSize +
                 "\nCalories: " + calories;

@@ -14,12 +14,12 @@ public class DatabaseConnection {
             Class.forName("org.sqlite.JDBC");
 
             // Create or connect to the database file
-            String dbPath = "jdbc:sqlite:foodie.db";
+            String dbPath = "jdbc:sqlite:Foodie_Database.db";
             conn = DriverManager.getConnection(dbPath);
 
             System.out.println("Connected to SQLite database");
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
         return conn;
     }
@@ -37,7 +37,7 @@ public class DatabaseConnection {
 
     // test for database connection
     public static void testConnection() {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:foodie.db")){
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:Foodie_Database.db")){
             if (!conn.isClosed()) {
                 System.out.println("\n========== DATABASE CONNECTION TEST ==========");
                 System.out.println("Connection successful!");

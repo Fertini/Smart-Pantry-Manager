@@ -24,9 +24,10 @@ public class RecipeDAO {
                         resultSet.getString("name"),
                         resultSet.getString("description"),
                         ((ArrayList<String>) resultSet.getArray("ingredients")),
+                        ((ArrayList<String>) resultSet.getArray("instructions")),
                         resultSet.getString("duration"),
                         resultSet.getInt("serving_size"),
-                        resultSet.getDouble("calories")
+                        resultSet.getString("calories")
                 );
                 recipes.add(recipe);
             } return recipes;
@@ -58,9 +59,10 @@ public class RecipeDAO {
                         resultSet.getString("name"),
                         resultSet.getString("description"),
                         ((ArrayList<String>) resultSet.getArray("ingredients")),
+                        ((ArrayList<String>) resultSet.getArray("instructions")),
                         resultSet.getString("duration"),
                         resultSet.getInt("serving_size"),
-                        resultSet.getDouble("calories")
+                        resultSet.getString("calories")
                 );
                 return recipe;
             }
@@ -92,9 +94,10 @@ public class RecipeDAO {
                         resultSet.getString("name"),
                         resultSet.getString("description"),
                         ((ArrayList<String>) resultSet.getArray("ingredients")),
+                        ((ArrayList<String>) resultSet.getArray("instructions")),
                         resultSet.getString("duration"),
                         resultSet.getInt("serving_size"),
-                        resultSet.getDouble("calories")
+                        resultSet.getString("calories")
                 );
                 recipes.add(recipe);
             }
@@ -111,8 +114,8 @@ public class RecipeDAO {
 
     // Add a new recipe to the database
     public static boolean addRecipe(Recipe recipe) {
-        String sql = "INSERT INTO Recipe (name, description, ingredients, duration, serving_size, calories) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Recipe (name, description, ingredients, instructions, duration, serving_size, calories) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         Connection conn = DatabaseConnection.getConnection();
         if (conn == null) return false;
@@ -121,9 +124,10 @@ public class RecipeDAO {
             preparedStatement.setString(1, recipe.getName());
             preparedStatement.setString(2, recipe.getDescription());
             preparedStatement.setArray(3, ((Array) recipe.getIngredients()));
-            preparedStatement.setString(4, recipe.getDuration());
-            preparedStatement.setInt(5, recipe.getServingSize());
-            preparedStatement.setDouble(6, recipe.getCalories());
+            preparedStatement.setArray(4, ((Array) recipe.getInstructions()));
+            preparedStatement.setString(5, recipe.getDuration());
+            preparedStatement.setInt(6, recipe.getServingSize());
+            preparedStatement.setString(7, recipe.getCalories());
 
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
@@ -143,7 +147,7 @@ public class RecipeDAO {
 
     // updating recipe details
     public static boolean updateRecipe(Recipe recipe) {
-        String sql = "UPDATE Recipe SET name=?, description=?, ingredients=?, duration=?, " +
+        String sql = "UPDATE Recipe SET name=?, description=?, ingredients=?, instructions=?, duration=?, " +
                     "serving_size=?, calories=? WHERE recipe_id=?";
 
         Connection conn = DatabaseConnection.getConnection();
@@ -153,10 +157,11 @@ public class RecipeDAO {
             preparedStatement.setString(1, recipe.getName());
             preparedStatement.setString(2, recipe.getDescription());
             preparedStatement.setArray(3, ((Array) recipe.getIngredients()));
-            preparedStatement.setString(4, recipe.getDuration());
-            preparedStatement.setInt(5, recipe.getServingSize());
-            preparedStatement.setDouble(6, recipe.getCalories());
-            preparedStatement.setInt(7, recipe.getRecipeId());
+            preparedStatement.setArray(4, ((Array) recipe.getInstructions()));
+            preparedStatement.setString(5, recipe.getDuration());
+            preparedStatement.setInt(6, recipe.getServingSize());
+            preparedStatement.setString(7, recipe.getCalories());
+            preparedStatement.setInt(8, recipe.getRecipeId());
 
             int rowsUpdated = preparedStatement.executeUpdate();
             if (rowsUpdated > 0) {
