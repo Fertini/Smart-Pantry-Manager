@@ -2,29 +2,21 @@ package com.example.foodie;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
-
-import com.example.foodie.database.DatabaseConnection;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.foodie.fragments.RecipeListFragment;
+import com.example.foodie.fragments.SettingsFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.fragment.app.Fragment;
 
+import com.example.foodie.fragments.PantryListFragment;
 import com.example.foodie.databinding.ActivityMainBinding;
-
-import android.view.Menu;
-import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,45 +25,44 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Load the fragment only on first creation (not on rotation)
+        bottomNavigationView = binding.bottomNavigation;
+
+        // Load the fragment only on first creation
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new RecipeListFragment())
-                    .commit();
+            loadFragment(new PantryListFragment());
+            bottomNavigationView.setSelectedItemId(R.id.nav_pantry);
         }
+
+        // selecting fragments based on button selections
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+
+            if (item.getItemId() == R.id.nav_pantry) {
+                selectedFragment = new PantryListFragment();
+            } else if (item.getItemId() == R.id.nav_recipes) {
+                selectedFragment = new RecipeListFragment();
+            } else if (item.getItemId() == R.id.nav_settings) {
+                selectedFragment = new SettingsFragment();
+            }
+
+            if (selectedFragment != null) {
+                loadFragment(selectedFragment);
+            }
+
+            return true; // returning true to show that the item has been selected
+        });
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.nav_host_fragment_content_main);
-        boolean handled = false;
-        if (navHostFragment != null) {
-            NavController navController = navHostFragment.getNavController();
-            handled = NavigationUI.navigateUp(navController, appBarConfiguration);
-        }
-        return handled || super.onSupportNavigateUp();
+    public void loadFragment(Fragment fragment){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 }
