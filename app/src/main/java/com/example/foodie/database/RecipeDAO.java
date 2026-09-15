@@ -25,9 +25,9 @@ public class RecipeDAO {
                         resultSet.getString("description"),
                         ((ArrayList<String>) resultSet.getArray("ingredients")),
                         ((ArrayList<String>) resultSet.getArray("instructions")),
-                        resultSet.getString("duration"),
+                        resultSet.getInt("duration"),
                         resultSet.getInt("serving_size"),
-                        resultSet.getString("calories")
+                        resultSet.getInt("calories")
                 );
                 recipes.add(recipe);
             } return recipes;
@@ -60,9 +60,9 @@ public class RecipeDAO {
                         resultSet.getString("description"),
                         ((ArrayList<String>) resultSet.getArray("ingredients")),
                         ((ArrayList<String>) resultSet.getArray("instructions")),
-                        resultSet.getString("duration"),
+                        resultSet.getInt("duration"),
                         resultSet.getInt("serving_size"),
-                        resultSet.getString("calories")
+                        resultSet.getInt("calories")
                 );
                 return recipe;
             }
@@ -95,9 +95,9 @@ public class RecipeDAO {
                         resultSet.getString("description"),
                         ((ArrayList<String>) resultSet.getArray("ingredients")),
                         ((ArrayList<String>) resultSet.getArray("instructions")),
-                        resultSet.getString("duration"),
+                        resultSet.getInt("duration"),
                         resultSet.getInt("serving_size"),
-                        resultSet.getString("calories")
+                        resultSet.getInt("calories")
                 );
                 recipes.add(recipe);
             }
@@ -125,9 +125,9 @@ public class RecipeDAO {
             preparedStatement.setString(2, recipe.getDescription());
             preparedStatement.setArray(3, ((Array) recipe.getIngredients()));
             preparedStatement.setArray(4, ((Array) recipe.getInstructions()));
-            preparedStatement.setString(5, recipe.getDuration());
+            preparedStatement.setInt(5, recipe.getDuration());
             preparedStatement.setInt(6, recipe.getServingSize());
-            preparedStatement.setString(7, recipe.getCalories());
+            preparedStatement.setInt(7, recipe.getCalories());
 
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
@@ -158,9 +158,9 @@ public class RecipeDAO {
             preparedStatement.setString(2, recipe.getDescription());
             preparedStatement.setArray(3, ((Array) recipe.getIngredients()));
             preparedStatement.setArray(4, ((Array) recipe.getInstructions()));
-            preparedStatement.setString(5, recipe.getDuration());
+            preparedStatement.setInt(5, recipe.getDuration());
             preparedStatement.setInt(6, recipe.getServingSize());
-            preparedStatement.setString(7, recipe.getCalories());
+            preparedStatement.setInt(7, recipe.getCalories());
             preparedStatement.setInt(8, recipe.getRecipeId());
 
             int rowsUpdated = preparedStatement.executeUpdate();

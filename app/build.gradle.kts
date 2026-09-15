@@ -49,4 +49,5 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     // Source: https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
     implementation("org.xerial:sqlite-jdbc:3.53.4.0")
+    implementation("androidx.cardview:cardview:1.0.0")
 }

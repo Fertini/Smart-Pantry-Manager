@@ -22,7 +22,7 @@ public class RecipeManager {
         } return null;
     }
 
-    public static Recipe createRecipe(String name, String description, ArrayList<String> ingredients, ArrayList<String> instructions, String duration, int servingSize, String calories){
+    public static Recipe createRecipe(String name, String description, ArrayList<String> ingredients, ArrayList<String> instructions, int duration, int servingSize, int calories){
         Recipe recipe = new Recipe(name, description, ingredients, instructions, duration, servingSize, calories);
         if (!recipes.contains(recipe)){
             RecipeDAO.addRecipe(recipe);
