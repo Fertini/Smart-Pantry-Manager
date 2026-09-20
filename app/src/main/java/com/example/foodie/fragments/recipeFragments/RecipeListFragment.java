@@ -1,10 +1,9 @@
-package com.example.foodie.fragments;
+package com.example.foodie.fragments.recipeFragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,13 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeListFragment extends Fragment {
-
+    private static Recipe recipeClicked;
     private RecipesLayoutBinding binding;
     private RecipeAdapter adapter;
     private List<Recipe> recipeList;
 
     public RecipeListFragment(){}
 
+    // ========== Override methods ========== //
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -46,12 +46,16 @@ public class RecipeListFragment extends Fragment {
         loadRecipesFromDatabase();
     }
 
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        binding = null;
+    }
+
+    // ========== Class Methods ========== //
     private void setupRecyclerView(){
         recipeList = new ArrayList<>();
-        adapter = new RecipeAdapter(recipeList, recipe -> {
-            Toast.makeText(getContext(), "Clicked: " + recipe.getName(),
-            Toast.LENGTH_SHORT).show();
-        });
+        adapter = new RecipeAdapter(recipeList, recipe -> recipeClicked = recipe);
 
         binding.recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recipeRecyclerView.setAdapter(adapter);
@@ -62,10 +66,9 @@ public class RecipeListFragment extends Fragment {
         adapter.updateList(recipes);
     }
 
-    @Override
-    public void onDestroyView(){
-        super.onDestroyView();
-        binding = null;
-    }
 
+
+    public static Recipe getRecipeClicked(){
+        return recipeClicked;
+    }
 }

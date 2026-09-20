@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <Layout
-        android:orientation="hotizontal">
-
 
     <item
         android:id="@+id/nav_pantry"
         android:icon="@drawable/ic_pantry"
-        android:title="Pantry" />
+        android:title="@string/pantry_label"
+        android:onClick="changeBtn"
+        />
 
     <item
         android:id="@+id/nav_recipes"
         android:icon="@drawable/ic_recipes"
-        android:title="Recipes" />
+        android:title="@string/recipes_label"
+        android:onClick="changeBtn"
+        />
 
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_settings"
-        android:title="Settings" />
-    </Layout>
+        android:title="@string/settings_label"
+        android:onClick="changeBtn"
+        />
 </menu>

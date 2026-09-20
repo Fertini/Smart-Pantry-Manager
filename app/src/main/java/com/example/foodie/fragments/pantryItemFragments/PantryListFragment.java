@@ -1,17 +1,16 @@
-package com.example.foodie.fragments;
+package com.example.foodie.fragments.pantryItemFragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-n
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.foodie.databinding.PantryItemLayoutBinding;
+import com.example.foodie.databinding.PantryLayoutBinding;
 import com.example.foodie.managers.PantryAdapter;
 import com.example.foodie.models.PantryItem;
 import com.example.foodie.database.PantryItemDAO;
@@ -20,18 +19,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PantryListFragment extends Fragment {
-
-    private PantryItemLayoutBinding binding;
+    public static PantryItem itemClicked;
+    private PantryLayoutBinding binding;
     private PantryAdapter adapter;
-    private List<PantryItem> pantryList;
 
     public PantryListFragment(){}
 
+    // ========== override methods ========== //
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState){
-        binding = PantryItemLayoutBinding.inflate(inflater, container, false);
+        binding = PantryLayoutBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -43,23 +42,7 @@ public class PantryListFragment extends Fragment {
         setupRecyclerView();
 
         // loading pantry Items from the database
-        loadRecipesFromDatabase();
-    }
-
-    private void setupRecyclerView(){
-        pantryList = new ArrayList<>();
-        adapter = new PantryAdapter(pantryList, pantry -> {
-            Toast.makeText(getContext(), "Clicked: " + pantry.getName(),
-                    Toast.LENGTH_SHORT).show();
-        });
-
-        binding.pantryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.pantryRecyclerView.setAdapter(adapter);
-    }
-
-    private void loadRecipesFromDatabase(){
-        List<PantryItem> pantryItems = PantryItemDAO.getAll();
-        adapter.updateList(pantryItems);
+        loadPantryItemsFromDatabase();
     }
 
     @Override
@@ -67,5 +50,25 @@ public class PantryListFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    // ========== class methods ========== //
+    private void setupRecyclerView(){
+        List<PantryItem> pantryList = new ArrayList<>();
+        adapter = new PantryAdapter(pantryList, pantryItem -> itemClicked = pantryItem);
+
+        binding.pantryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.pantryRecyclerView.setAdapter(adapter);
+    }
+
+    private void loadPantryItemsFromDatabase(){
+        List<PantryItem> pantryItems = PantryItemDAO.getAll();
+        adapter.updateList(pantryItems);
+    }
+
+    public static PantryItem getItemClicked(){
+        return itemClicked;
+    }
+
+
 
 }

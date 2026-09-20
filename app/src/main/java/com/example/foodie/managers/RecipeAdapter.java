@@ -38,6 +38,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return recipeList.size();
     }
 
+
     // ViewHolder inner class
     public class RecipeViewHolder extends RecyclerView.ViewHolder {
         private RecipeItemCardBinding binding;

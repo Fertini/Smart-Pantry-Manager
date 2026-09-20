@@ -6,9 +6,44 @@
         app:startDestination="@layout/activity_main">
 
     <fragment
-        android:id="@+id/home"
-        android:name="com.example.foodie.fragments.RecipeListFragment"
-        android:label="Home"
-        tools:layout="@layout/activity_main" />
+        android:id="@+id/pantry"
+        android:name="com.example.foodie.fragments.pantryItemFragments.PantryListFragment"
+        android:label="Pantry"
+        tools:layout="@layout/pantry_layout">
+        <action
+            android:id="@+id/action_pantry_to_recipes"
+            app:destination="@id/recipes" />
+        <action
+            android:id="@+id/action_pantry_to_pantryItem"
+            app:destination="@id/pantryItem" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipes"
+        android:name="com.example.foodie.fragments.recipeFragments.RecipeListFragment"
+        android:label="Recipes"
+        tools:layout="@layout/recipes_layout">
+        <action
+            android:id="@+id/action_recipes_to_pantry"
+            app:destination="@id/pantry" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pantryItem"
+        android:name="com.example.foodie.fragments.pantryItemFragments.PantryItemDetailsFragment"
+        android:label="PantryItem"
+        tools:layout="@layout/pantry_item_layout"
+    >
+        <action
+            android:id="@+id/action_pantryItem_to_pantryItemEdit"
+            app:destination="@id/pantryItemEdit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pantryItemEdit"
+        android:name="com.example.foodie.fragments.pantryItemFragments.EditPantryItemFragment"
+        android:label="PantryItem"
+        tools:layout="@layout/pantry_item_layout"
+        />
 
 </navigation>
