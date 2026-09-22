@@ -36,6 +36,9 @@ public class PantryListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
+        // initialising an instance of the database
+        PantryItemDAO.init(requireContext());
+
         // initialising the recycleView
         setupRecyclerView();
 

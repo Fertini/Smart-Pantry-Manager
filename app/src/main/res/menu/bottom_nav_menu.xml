@@ -6,6 +6,7 @@
         android:icon="@drawable/ic_pantry"
         android:title="@string/pantry_label"
         android:onClick="changeBtn"
+        android:actionLayout="@layout/pantry_layout"
         />
 
     <item
@@ -13,6 +14,7 @@
         android:icon="@drawable/ic_recipes"
         android:title="@string/recipes_label"
         android:onClick="changeBtn"
+        android:actionLayout="@layout/recipes_layout"
         />
 
     <item
@@ -20,5 +22,6 @@
         android:icon="@drawable/ic_settings"
         android:title="@string/settings_label"
         android:onClick="changeBtn"
+        android:actionLayout="@layout/fragment_settings"
         />
 </menu>

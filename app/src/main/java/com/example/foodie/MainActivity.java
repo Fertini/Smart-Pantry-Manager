@@ -1,5 +1,6 @@
 package com.example.foodie;
 
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -29,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Load the fragment only on first creation.
         if (savedInstanceState == null) {
-            loadFragment(new PantryListFragment());
-            bottomNavigationView.setSelectedItemId(R.id.nav_pantry);
+            loadFragment(new RecipeListFragment());
+            bottomNavigationView.setSelectedItemId(R.id.nav_recipes);
         }
 
         // selecting fragments based on button selections
@@ -42,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
                 changeBtn(item);
 
             } else if (item.getItemId() == R.id.nav_recipes) {
-                changeBtn(item);
                 selectedFragment = new RecipeListFragment();
+                changeBtn(item);
 
             } else if (item.getItemId() == R.id.nav_settings) {
-                changeBtn(item);
                 selectedFragment = new SettingsFragment();
+                changeBtn(item);
             }
 
             if (selectedFragment != null) {
@@ -74,9 +75,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeBtn(MenuItem item){
-        item.setOnMenuItemClickListener(menuItem ->{
-            findViewById(item.getItemId()).setBackgroundColor(0x2EC4B6);
-            return true;
-        });
+        if(item.getItemId() == R.id.nav_pantry){
+            item.setIcon(R.drawable.ic_pantry_active);
+        } else if (item.getItemId() == R.id.nav_recipes){
+            item.setIcon(R.drawable.ic_recipes_active);
+        }else if (item.getItemId() == R.id.nav_settings){
+            item.setIcon(R.drawable.ic_settings_active);
+        }
     }
+
 }
