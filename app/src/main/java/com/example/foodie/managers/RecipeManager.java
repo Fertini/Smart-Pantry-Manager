@@ -2,9 +2,9 @@ package com.example.foodie.managers;
 
 import com.example.foodie.database.PantryItemDAO;
 import com.example.foodie.database.RecipeDAO;
-import com.example.foodie.models.PantryItem;
-import com.example.foodie.models.Recipe;
+import com.example.foodie.models.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RecipeManager {
@@ -21,6 +21,7 @@ public class RecipeManager {
             if (pantry.contains(ingredient)) return recipe;
         } return null;
     }
+
 
     public static Recipe createRecipe(String name, String description, ArrayList<String> ingredients, ArrayList<String> instructions, int duration, int servingSize, int calories){
         Recipe recipe = new Recipe(name, description, ingredients, instructions, duration, servingSize, calories);

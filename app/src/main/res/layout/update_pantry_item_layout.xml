@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".fragments.recipeFragments.RecipeListFragment">
+
+    <!-- pantry item name -->
+    <androidx.cardview.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="5dp">
+
+        <TextView
+            android:id="@+id/pantry_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/pantry_item_name"
+            android:textSize="28sp"
+            android:background="@color/bright_orange"
+            android:textStyle="italic|normal"
+            android:fontFamily="@font/bagel_fat"
+            android:textColor="@color/mint_cream"
+            android:paddingVertical="5dp"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- pantry item quantity -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pantry_item_quantity_label"
+        android:textSize="30sp"
+        android:textColor="@color/grapefruit_pink"
+        android:fontFamily="@font/bagel_fat"
+        android:paddingHorizontal="40dp"
+        />
+
+    <EditText
+        android:id="@+id/pantry_item_quantity"
+        android:inputType="text"
+        android:hint="@string/pantry_item_quantity"
+        android:autofillHints="@string/pantry_item_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pantry_item_quantity"
+        android:textColor="@color/ink_black"
+        android:textSize="20sp"
+        android:paddingHorizontal="20dp"
+        />
+
+    <!-- pantry item unit -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pantry_item_unit_label"
+        android:textSize="30sp"
+        android:textColor="@color/grapefruit_pink"
+        android:fontFamily="@font/bagel_fat"
+        android:paddingHorizontal="40dp"
+        />
+
+    <EditText
+        android:id="@+id/pantry_item_unit"
+        android:inputType="text"
+        android:hint="@string/pantry_item_unit"
+        android:autofillHints="@string/pantry_item_unit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pantry_item_unit"
+        android:textColor="@color/ink_black"
+        android:textSize="20sp"
+        android:paddingHorizontal="20dp"
+        />
+
+    <!-- pantry item expiriy -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pantry_item_expiry_label"
+        android:textSize="30sp"
+        android:textColor="@color/grapefruit_pink"
+        android:fontFamily="@font/bagel_fat"
+        android:paddingHorizontal="40dp"
+        />
+
+    <EditText
+        android:id="@+id/pantry_item_expiry_date"
+        android:inputType="date"
+        android:hint="@string/pantry_item_expiry"
+        android:autofillHints="@string/pantry_item_expiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/ink_black"
+        android:textSize="20sp"
+        android:paddingHorizontal="20dp"
+        />
+
+    <Button
+        android:id="@+id/edit_pantry_item_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="70dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginVertical="20dp"
+        android:backgroundTint="@color/blush_pop"
+        android:fontFamily="@font/bagel_fat"
+        android:padding="15dp"
+        android:text="@string/save"
+        android:textSize="18sp" />
+</LinearLayout>

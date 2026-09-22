@@ -3,15 +3,14 @@ package com.example.foodie;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.foodie.databinding.ActivityMainBinding;
+import com.example.foodie.fragments.pantryItemFragments.PantryListFragment;
 import com.example.foodie.fragments.recipeFragments.RecipeListFragment;
 import com.example.foodie.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-import com.example.foodie.fragments.pantryItemFragments.PantryListFragment;
-import com.example.foodie.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = binding.bottomNavigation;
 
-        // Load the fragment only on first creation
+        // Load the fragment only on first creation.
         if (savedInstanceState == null) {
             loadFragment(new PantryListFragment());
             bottomNavigationView.setSelectedItemId(R.id.nav_pantry);
@@ -41,9 +40,11 @@ public class MainActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.nav_pantry) {
                 selectedFragment = new PantryListFragment();
                 changeBtn(item);
+
             } else if (item.getItemId() == R.id.nav_recipes) {
                 changeBtn(item);
                 selectedFragment = new RecipeListFragment();
+
             } else if (item.getItemId() == R.id.nav_settings) {
                 changeBtn(item);
                 selectedFragment = new SettingsFragment();

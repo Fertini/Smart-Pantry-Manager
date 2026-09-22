@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS Recipes (
 -- INSERTING INTO RECIPES TABLE
 -- =====================================================
 
-INSERT INTO recipes (recipe_name, description, duration_minutes, serving_size, calories_per_serving, ingredients, instructions) VALUES
+"INSERT INTO recipes (recipe_name, description, duration_minutes, serving_size, calories_per_serving, ingredients, instructions) VALUES
 
 -- Recipe 1: Pasta Aglio e Olio
 (
@@ -622,7 +622,7 @@ INSERT INTO recipes (recipe_name, description, duration_minutes, serving_size, c
     25,
     4,
     445
-);
+)"
 
 -- =====================================================
 -- USEFUL QUERIES WITH JSON ARRAYS

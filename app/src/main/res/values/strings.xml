@@ -5,6 +5,7 @@
     <string name="recipes_label">Recipes</string>
     <string name="pantry_label">Pantry</string>
     <string name="settings_label">Settings</string>
+    <string name="save">Save</string>
 
     <!-- settings -->
     <string name="setting_one">Expiring Soon Alerts</string>

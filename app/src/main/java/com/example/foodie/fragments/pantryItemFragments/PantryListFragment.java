@@ -23,8 +23,6 @@ public class PantryListFragment extends Fragment {
     private PantryLayoutBinding binding;
     private PantryAdapter adapter;
 
-    public PantryListFragment(){}
-
     // ========== override methods ========== //
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,

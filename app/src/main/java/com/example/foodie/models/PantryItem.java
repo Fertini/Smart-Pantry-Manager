@@ -20,10 +20,7 @@ public class PantryItem {
 
     // constructor for new pantry items
     public PantryItem(String name, int quantity, String unit, LocalDate expiryDate){
-        this.name = name;
-        this.quantity = quantity;
-        this.unit = unit;
-        this.expiryDate = expiryDate;
+        this(0, name, quantity, unit, expiryDate);
     }
 
     // ======================= getters ======================== //
