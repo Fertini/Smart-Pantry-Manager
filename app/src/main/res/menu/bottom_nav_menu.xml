@@ -6,6 +6,7 @@
         android:icon="@drawable/ic_pantry"
         android:title="@string/pantry_label"
         android:onClick="changeBtn"
+        android:iconTint="@color/blush_pop"
         android:actionLayout="@layout/pantry_layout"
         />
 
