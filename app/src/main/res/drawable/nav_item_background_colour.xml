@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Background color when the item is SELECTED -->
-    <item android:drawable="@color/cornsilk" android:state_checked="true" />
+    <item android:drawable="@color/mint_cream" android:state_checked="true" />
 
     <!-- Background color when the item is NOT selected -->
     <item android:drawable="@android:color/transparent" />
