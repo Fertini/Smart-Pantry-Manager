@@ -3,6 +3,7 @@ package com.example.foodie;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.foodie.databinding.ActivityMainBinding;
 import com.example.foodie.fragments.pantryItemFragments.PantryListFragment;
@@ -40,15 +41,12 @@ public class MainActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.nav_pantry) {
                 selectedFragment = new PantryListFragment();
-                changeBtn(item);
 
             } else if (item.getItemId() == R.id.nav_recipes) {
                 selectedFragment = new RecipeListFragment();
-                changeBtn(item);
 
             } else if (item.getItemId() == R.id.nav_settings) {
                 selectedFragment = new SettingsFragment();
-                changeBtn(item);
             }
 
             if (selectedFragment != null) {
@@ -72,16 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit();
-    }
-
-    public void changeBtn(MenuItem item){
-        if(item.getItemId() == R.id.nav_pantry){
-            item.setIcon(R.drawable.ic_pantry_active);
-        } else if (item.getItemId() == R.id.nav_recipes){
-            item.setIcon(R.drawable.ic_recipes_active);
-        }else if (item.getItemId() == R.id.nav_settings){
-            item.setIcon(R.drawable.ic_settings_active);
-        }
     }
 
 }

@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/light_gold"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp">
 
-    <item
-        android:id="@+id/nav_pantry"
-        android:icon="@drawable/ic_pantry"
-        android:title="@string/pantry_label"
-        android:onClick="changeBtn"
-        android:iconTint="@color/blush_pop"
-        android:actionLayout="@layout/pantry_layout"
-        />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_pantry"
+            android:icon="@drawable/ic_pantry"
+            android:title="@string/pantry_label"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:actionLayout="@layout/pantry_layout"
+            />
 
-    <item
-        android:id="@+id/nav_recipes"
-        android:icon="@drawable/ic_recipes"
-        android:title="@string/recipes_label"
-        android:onClick="changeBtn"
-        android:actionLayout="@layout/recipes_layout"
-        />
+        <item
+            android:id="@+id/nav_recipes"
+            android:icon="@drawable/ic_recipes"
+            android:title="@string/recipes_label"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:actionLayout="@layout/recipes_layout"
+            />
 
-    <item
-        android:id="@+id/nav_settings"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/settings_label"
-        android:onClick="changeBtn"
-        android:actionLayout="@layout/fragment_settings"
-        />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings_label"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:actionLayout="@layout/fragment_settings"
+            />
+    </group>
 </menu>

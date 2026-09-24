@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".fragments.recipeFragments.RecipeListFragment">
+    tools:context=".fragments.pantryItemFragments.EditPantryItemFragment">
 
     <!-- pantry item name -->
     <androidx.cardview.widget.CardView
@@ -51,7 +51,6 @@
         android:autofillHints="@string/pantry_item_quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/pantry_item_quantity"
         android:textColor="@color/ink_black"
         android:textSize="20sp"
         android:paddingHorizontal="20dp"
@@ -75,13 +74,12 @@
         android:autofillHints="@string/pantry_item_unit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/pantry_item_unit"
         android:textColor="@color/ink_black"
         android:textSize="20sp"
         android:paddingHorizontal="20dp"
         />
 
-    <!-- pantry item expiriy -->
+    <!-- pantry item expiry -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -104,6 +102,7 @@
         android:paddingHorizontal="20dp"
         />
 
+    <!-- save button -->
     <Button
         android:id="@+id/edit_pantry_item_btn"
         android:layout_width="match_parent"

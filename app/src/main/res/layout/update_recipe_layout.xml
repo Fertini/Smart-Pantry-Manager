@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    tools:context=".fragments.recipeFragments.RecipeListFragment">
+    tools:context=".fragments.recipeFragments.EditRecipeFragment">
 
     <!-- recipe name -->
     <androidx.cardview.widget.CardView
@@ -100,6 +101,7 @@
         android:textColor="@color/ink_black"
         android:textSize="20sp"
         android:paddingHorizontal="20dp"
+
         />
 
     <!-- recipe duration -->
@@ -172,7 +174,7 @@
         android:paddingHorizontal="20dp"
         />
 
-    <!-- edit button -->
+    <!-- save button -->
     <Button
         android:id="@+id/edit_recipe_item_btn"
         android:layout_width="match_parent"

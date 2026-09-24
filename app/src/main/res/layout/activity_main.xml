@@ -41,6 +41,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/light_gold"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"
+        app:itemBackground="@drawable/nav_item_background_colour"
+        app:itemTextColor="@drawable/nav_item_tint_colour"
+        app:iconTint="@drawable/nav_item_tint_colour"
+        app:itemActiveIndicatorStyle="@null" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

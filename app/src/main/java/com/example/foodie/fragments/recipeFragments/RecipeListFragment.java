@@ -22,6 +22,7 @@ public class RecipeListFragment extends Fragment {
     private static Recipe recipeClicked;
     private RecipesLayoutBinding binding;
     private RecipeAdapter adapter;
+    private final List<Recipe> recipeList = RecipeDAO.getAll();
 
     public RecipeListFragment(){}
 
@@ -41,11 +42,11 @@ public class RecipeListFragment extends Fragment {
         // initialising an instance of the database
         RecipeDAO.init(requireContext());
 
-        // initialising the recycleView
-        setupRecyclerView();
+        binding.recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recipeRecyclerView.setAdapter(new RecipeAdapter(recipeList, recipe -> recipeClicked = recipe));
 
         // loading recipes from the database
-        loadRecipesFromDatabase();
+        getRecipes();
     }
 
     @Override
@@ -55,21 +56,12 @@ public class RecipeListFragment extends Fragment {
     }
 
     // ========== Class Methods ========== //
-    private void setupRecyclerView(){
-        List<Recipe> recipeList = new ArrayList<>();
-        adapter = new RecipeAdapter(recipeList, recipe -> recipeClicked = recipe);
 
-        binding.recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.recipeRecyclerView.setAdapter(adapter);
-    }
-
-    private void loadRecipesFromDatabase(){
-        List<Recipe>recipeList = RecipeDAO.getAll();
+    // getting data
+    public void getRecipes(){
         adapter.updateList(recipeList);
     }
-
-
-
+    // getting tapped recipe
     public static Recipe getRecipeClicked(){
         return recipeClicked;
     }
