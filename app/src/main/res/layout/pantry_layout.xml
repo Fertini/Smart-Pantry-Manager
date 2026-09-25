@@ -22,7 +22,7 @@
             android:text="@string/pantry_label"
             android:fontFamily="@font/bagel_fat"
             android:textColor="@color/mint_cream"
-            android:textSize="40sp"
+            android:textSize="35sp"
             android:textStyle="bold"
             android:gravity="center"/>
 

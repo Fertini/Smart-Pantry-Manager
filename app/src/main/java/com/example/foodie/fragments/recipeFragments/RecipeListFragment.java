@@ -15,7 +15,6 @@ import com.example.foodie.managers.RecipeAdapter;
 import com.example.foodie.models.Recipe;
 import com.example.foodie.database.RecipeDAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeListFragment extends Fragment {

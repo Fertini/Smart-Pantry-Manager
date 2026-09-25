@@ -19,7 +19,7 @@
         android:gravity="center"
         android:textColor="@color/light_gold"
         android:background="@color/sky_blue"
-        android:textSize="50sp" />
+        android:textSize="50sp"/>
 
     <!-- Fragment container -->
     <androidx.fragment.app.FragmentContainerView
@@ -41,11 +41,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/light_gold"
+        android:fontFamily="sans-serif"
         app:menu="@menu/bottom_nav_menu"
-        app:itemIconSize="40dp"
+        app:itemPaddingTop="5dp"
+        app:itemIconSize="35dp"
         app:itemBackground="@drawable/nav_item_background_colour"
         app:itemTextColor="@drawable/nav_item_tint_colour"
-        app:iconTint="@drawable/nav_item_tint_colour"
-        app:itemActiveIndicatorStyle="@null" />
+        app:itemIconTint="@drawable/nav_item_tint_colour"
+        app:itemGravity="center"
+        app:itemActiveIndicatorStyle="@null"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

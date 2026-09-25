@@ -38,10 +38,12 @@
         app:cardCornerRadius="25dp"
         app:cardElevation="5dp">
 
-        <androidx.appcompat.widget.SwitchCompat
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/expiring_soon_alerts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="30dp"
+            android:checked="true"
             android:background="@color/sky_blue"
             android:text="@string/setting_one"
             android:textColor="@color/mint_cream"

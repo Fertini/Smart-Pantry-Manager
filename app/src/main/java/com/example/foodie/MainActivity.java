@@ -1,9 +1,6 @@
 package com.example.foodie;
 
-import android.graphics.Canvas;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.example.foodie.databinding.ActivityMainBinding;
 import com.example.foodie.fragments.pantryItemFragments.PantryListFragment;
@@ -31,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Load the fragment only on first creation.
         if (savedInstanceState == null) {
-            loadFragment(new RecipeListFragment());
+            loadFragment(new PantryListFragment());
             bottomNavigationView.setSelectedItemId(R.id.nav_recipes);
         }
 
