@@ -15,13 +15,13 @@ import com.example.foodie.managers.RecipeAdapter;
 import com.example.foodie.models.Recipe;
 import com.example.foodie.database.RecipeDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeListFragment extends Fragment {
     private static Recipe recipeClicked;
     private RecipesLayoutBinding binding;
     private RecipeAdapter adapter;
-    private final List<Recipe> recipeList = RecipeDAO.getAll();
 
     public RecipeListFragment(){}
 
@@ -41,11 +41,11 @@ public class RecipeListFragment extends Fragment {
         // initialising an instance of the database
         RecipeDAO.init(requireContext());
 
-        binding.recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.recipeRecyclerView.setAdapter(new RecipeAdapter(recipeList, recipe -> recipeClicked = recipe));
+        // initialising the recycleView
+        setupRecyclerView();
 
         // loading recipes from the database
-        getRecipes();
+        loadRecipesFromDatabase();
     }
 
     @Override
@@ -55,12 +55,19 @@ public class RecipeListFragment extends Fragment {
     }
 
     // ========== Class Methods ========== //
+    private void setupRecyclerView(){
+        List<Recipe> recipeList = new ArrayList<>();
+        adapter = new RecipeAdapter(recipeList, recipe -> recipeClicked = recipe);
 
-    // getting data
-    public void getRecipes(){
+        binding.recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recipeRecyclerView.setAdapter(adapter);
+    }
+
+    private void loadRecipesFromDatabase(){
+        List<Recipe>recipeList = RecipeDAO.getAll();
         adapter.updateList(recipeList);
     }
-    // getting tapped recipe
+    
     public static Recipe getRecipeClicked(){
         return recipeClicked;
     }

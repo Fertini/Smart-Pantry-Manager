@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         // Load the fragment only on first creation.
         if (savedInstanceState == null) {
             loadFragment(new PantryListFragment());
-            bottomNavigationView.setSelectedItemId(R.id.nav_recipes);
+            bottomNavigationView.setSelectedItemId(R.id.nav_pantry);
         }
 
         // selecting fragments based on button selections

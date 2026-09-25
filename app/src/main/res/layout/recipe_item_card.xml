@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/recipe_card"
+    android:clickable="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:orientation="vertical"
     app:cardCornerRadius="25dp"
     app:cardElevation="5dp"
-    app:cardBackgroundColor="@color/bright_orange">
+    app:strokeColor="@color/grapefruit_pink"
+    app:stokeWidth="2dp"
+    app:cardBackgroundColor="@color/baby_pink">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="@string/recipe_name"
             android:textColor="@color/cornsilk"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <!-- description -->
@@ -32,10 +35,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/recipe_description"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textColor="@color/mint_cream"
             android:layout_marginTop="4dp" />
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

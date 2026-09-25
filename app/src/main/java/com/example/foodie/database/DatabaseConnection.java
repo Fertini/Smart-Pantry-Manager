@@ -60,23 +60,6 @@ public class DatabaseConnection extends SQLiteOpenHelper {
         }
     }
 
-    // Test connection
-    public static void testConnection(Context context) {
-        SQLiteDatabase testDb = null;
-        try {
-            testDb = getConnection(context);
-            if (testDb != null && testDb.isOpen()) {
-                System.out.println("\n========== DATABASE CONNECTION TEST ==========");
-                System.out.println("Connection successful!");
-                System.out.println("=============================================\n");
-            }
-        } catch (Exception e) {
-            System.err.println("Connection test failed: " + e.getMessage());
-        } finally {
-            closeConnection(testDb);
-        }
-    }
-
     // Create tables
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -102,6 +85,8 @@ public class DatabaseConnection extends SQLiteOpenHelper {
         db.execSQL(createRecipesSQL);
 
         System.out.println("Database tables created");
+
+        // insert default data into the database
         insertRecipesIntoDB(db);
     }
 

@@ -1,22 +1,15 @@
 package com.example.foodie.managers;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.foodie.R;
 import com.example.foodie.databinding.RecipeItemCardBinding;
 import com.example.foodie.models.Recipe;
 
 import java.util.List;
-import java.util.ArrayList;
-
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>{
     private List<Recipe> recipeList;
-    private final OnRecipeClickListener listener;
-    boolean isSelectMode = false;
-    private ArrayList<Recipe> selectedRecipes = new ArrayList<>();
+    private OnRecipeClickListener listener;
 
     public RecipeAdapter(List<Recipe> recipeList, OnRecipeClickListener listener){
         this.recipeList = recipeList;
@@ -26,10 +19,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
-
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recipe_item_card, parent, false);
-        return new RecipeViewHolder(view);
+        RecipeItemCardBinding binding = RecipeItemCardBinding.inflate(
+                LayoutInflater.from(parent.getContext()),
+                parent,
+                false
+        );
+        return new RecipeViewHolder(binding);
     }
 
     @Override
@@ -48,8 +43,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public class RecipeViewHolder extends RecyclerView.ViewHolder {
         private RecipeItemCardBinding binding;
 
-        public RecipeViewHolder(@NonNull View view){
-            super(view);
+        public RecipeViewHolder(RecipeItemCardBinding binding){
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
         public void bind(Recipe recipe){
@@ -57,7 +53,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             binding.recipeDescription.setText(recipe.getDescription());
 
             // handling clicks on recipe items
-            itemView.setOnClickListener(view -> {
+            itemView.setOnClickListener(v -> {
                 if(listener!=null){
                     listener.onRecipeClick(recipe);
                 }
@@ -65,7 +61,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         }
     }
 
-    // Interface for click handling for recipes
+    // Interface for click handling
     public interface OnRecipeClickListener{
         void onRecipeClick(Recipe recipe);
     }
