@@ -42,7 +42,7 @@ public class Recipe implements Serializable {
     public String getName(){return name;}
     public String getDescription(){return description;}
     public ArrayList<String> getIngredients(){return ingredients;}
-    public ArrayList<String> getInstructions(){return ingredients;}
+    public ArrayList<String> getInstructions(){return instructions;}
     public int getDuration(){return duration;}
     public int getServingSize(){return servingSize;}
     public int getCalories(){return calories;}

@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,13 +54,16 @@ public class RecipeDetailsFragment extends Fragment {
     // ========== Class Methods ========== //
 
     public void displayDetails(){
+        String calories = recipe.getCalories() + "/per serving";
+        String duration = recipe.getDuration() + " minutes";
+
         binding.recipeName.setText(recipe.getName());
         binding.recipeDescription.setText(recipe.getDescription());
-        displayIngredients();
-        displayInstructions();
-        binding.recipeDuration.setText(recipe.getDuration());
-        binding.recipeServing.setText(recipe.getServingSize());
-        binding.recipeCalories.setText(recipe.getCalories());
+        binding.recipeIngredients.setText(displayIngredients());
+        binding.recipeInstructions.setText(displayInstructions());
+        binding.recipeDuration.setText(duration);
+        binding.recipeServing.setText(String.valueOf(recipe.getServingSize()));
+        binding.recipeCalories.setText(calories);
     }
 
     public String displayIngredients(){
@@ -80,7 +81,8 @@ public class RecipeDetailsFragment extends Fragment {
         String stepCount = "Step ";
         int count = 0;
         for (String item : instructions){
-            instructionsList.append(stepCount)
+            instructionsList.append("\n")
+                    .append(stepCount)
                     .append(++count)
                     .append(". ")
                     .append(item)

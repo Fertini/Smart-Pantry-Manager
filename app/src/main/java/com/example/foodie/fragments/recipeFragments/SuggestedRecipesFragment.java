@@ -8,39 +8,49 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.foodie.database.PantryItemDAO;
+import com.example.foodie.databinding.RecipesLayoutBinding;
+import com.example.foodie.R;
+import com.example.foodie.managers.BasicMatcher;
+import com.example.foodie.managers.RecipeAdapter;
+import com.example.foodie.models.PantryItem;
 import com.example.foodie.models.Recipe;
-import com.example.foodie.databinding.SuggestedRecipeLayoutBinding;
+import com.example.foodie.database.RecipeDAO;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class SuggestedRecipesFragment extends Fragment {
-
-    private SuggestedRecipeLayoutBinding binding;
-    private Recipe recipe;
+    private RecipesLayoutBinding binding;
+    private RecipeAdapter adapter;
 
     public SuggestedRecipesFragment(){}
 
-    // ========== Override Methods ========== //
+    // ========== Override methods ========== //
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState){
-        binding = SuggestedRecipeLayoutBinding.inflate(inflater, container, false);
+        binding = RecipesLayoutBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-        // Get recipe from arguments
-        if (getArguments() != null) {
-            recipe = (Recipe) getArguments().getSerializable("recipe");
-        }
+        super.onViewCreated(view, savedInstanceState);
 
-        // display recipe details
-        if (recipe != null) {
-            displayDetails();
-        }
+        // initialising an instance of the database
+        RecipeDAO.init(requireContext());
+
+        // initialising the recycleView
+        setupRecyclerView();
+
+        // loading recipes from the database
+        loadRecipesFromDatabase();
     }
 
     @Override
@@ -50,47 +60,68 @@ public class SuggestedRecipesFragment extends Fragment {
     }
 
     // ========== Class Methods ========== //
+    private void setupRecyclerView(){ // setting up recycler view and displaying recipe details on click
+        List<Recipe> recipeList = new ArrayList<>();
+        adapter = new RecipeAdapter(recipeList, recipe -> {
+            RecipeDetailsFragment recipeDetailsFragment = RecipeDetailsFragment.newInstance(recipe);
 
-    public void displayDetails(){
-        binding.recipeName.setText(recipe.getName());
-        binding.recipeDescription.setText(recipe.getDescription());
-        binding.recipeIngredients.setText(displayIngredients());
-        binding.recipeInstructions.setText(displayInstructions());
-        binding.recipeDuration.setText(recipe.getDuration());
-        binding.recipeServing.setText(recipe.getServingSize());
-        binding.recipeCalories.setText(recipe.getCalories());
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, recipeDetailsFragment)
+                    .addToBackStack(null)
+                    .commit();
+
+        });
+
+        binding.recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recipeRecyclerView.setAdapter(adapter);
     }
 
-    public String displayIngredients(){
-        ArrayList<String> ingredients = recipe.getIngredients();
-        StringBuilder ingredientsList = new StringBuilder();
-        for (String item : ingredients){
-            ingredientsList.append(item).append("\n");
+    private void loadRecipesFromDatabase(){
+        List<Recipe>DBrecipeList = RecipeDAO.getAll();
+        List<Recipe> recipeList = new ArrayList<>();
+
+        for (Recipe recipe : DBrecipeList){
+            if(hasIngredients(recipe)){
+                recipeList.add(recipe);
+            }
         }
-        return ingredientsList.toString();
+
+        adapter.updateList(recipeList);
     }
 
-    public String displayInstructions(){
-        ArrayList<String> instructions = recipe.getInstructions();
-        StringBuilder instructionsList = new StringBuilder();
-        String stepCount = "Step ";
-        int count = 0;
-        for (String item : instructions){
-            instructionsList.append(stepCount)
-                    .append(++count)
-                    .append(". ")
-                    .append(item)
-                    .append("\n");
+    private boolean hasIngredients(Recipe recipe) {
+        List<PantryItem> DBpantry = PantryItemDAO.getAll();
+        List<String> requiredIngredients = recipe.getIngredients();
+
+        // Track which pantry items have been matched
+        Set<PantryItem> matchedItems = new HashSet<>();
+
+        for (String ingredient : requiredIngredients) {
+            PantryItem bestMatch = null;
+            int bestDistance = Integer.MAX_VALUE;
+
+            // Find best match for this ingredient
+            for (PantryItem pantryItem : DBpantry) {
+                int distance = BasicMatcher.getLevenshteinDistance(
+                        pantryItem.getName().toLowerCase(),
+                        ingredient.toLowerCase()
+                );
+
+                // only assign if the match is better than the previous match,
+                // if the item has not been matched only if it is within the distance threshold
+                if (distance < bestDistance && distance <= 2 && !matchedItems.contains(pantryItem)) {
+                    bestMatch = pantryItem;
+                    bestDistance = distance;
+                }
+            }
+
+            if (bestMatch == null) {
+                return false; // pantry is missing an ingredient
+            }
+
+            matchedItems.add(bestMatch); // Mark as used to avoid duplicate matching
         }
-        return instructionsList.toString();
-    }
 
-    // method to safely pass over the data of the selected recipe to this fragment from the RecipeListFragment
-    public static SuggestedRecipesFragment newInstance(Recipe recipe){
-        SuggestedRecipesFragment fragment = new SuggestedRecipesFragment();
-        Bundle args = new Bundle();
-        args.putSerializable("recipe", recipe);
-        fragment.setArguments(args);
-        return fragment;
+        return true; // All ingredients are in the pantry
     }
 }

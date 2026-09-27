@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.foodie.databinding.RecipesLayoutBinding;
@@ -60,7 +61,7 @@ public class RecipeListFragment extends Fragment {
         adapter = new RecipeAdapter(recipeList, recipe -> {
             RecipeDetailsFragment recipeDetailsFragment = RecipeDetailsFragment.newInstance(recipe);
 
-            requireActivity().getSupportFragmentManager().beginTransaction()
+            getParentFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, recipeDetailsFragment)
                     .addToBackStack(null)
                     .commit();
