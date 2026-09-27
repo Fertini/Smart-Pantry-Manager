@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.foodie.databinding.RecipesLayoutBinding;
+import com.example.foodie.R;
 import com.example.foodie.managers.RecipeAdapter;
 import com.example.foodie.models.Recipe;
 import com.example.foodie.database.RecipeDAO;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeListFragment extends Fragment {
-    private static Recipe recipeClicked;
     private RecipesLayoutBinding binding;
     private RecipeAdapter adapter;
 
@@ -55,9 +55,17 @@ public class RecipeListFragment extends Fragment {
     }
 
     // ========== Class Methods ========== //
-    private void setupRecyclerView(){
+    private void setupRecyclerView(){ // setting up recycler view and displaying recipe details on click
         List<Recipe> recipeList = new ArrayList<>();
-        adapter = new RecipeAdapter(recipeList, recipe -> recipeClicked = recipe);
+        adapter = new RecipeAdapter(recipeList, recipe -> {
+            RecipeDetailsFragment recipeDetailsFragment = RecipeDetailsFragment.newInstance(recipe);
+
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, recipeDetailsFragment)
+                    .addToBackStack(null)
+                    .commit();
+
+        });
 
         binding.recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recipeRecyclerView.setAdapter(adapter);
@@ -66,9 +74,5 @@ public class RecipeListFragment extends Fragment {
     private void loadRecipesFromDatabase(){
         List<Recipe>recipeList = RecipeDAO.getAll();
         adapter.updateList(recipeList);
-    }
-    
-    public static Recipe getRecipeClicked(){
-        return recipeClicked;
     }
 }

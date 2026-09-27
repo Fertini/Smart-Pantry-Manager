@@ -7,10 +7,10 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    app:cardCornerRadius="25dp"
+    app:cardCornerRadius="15dp"
     app:cardElevation="5dp"
     app:strokeColor="@color/grapefruit_pink"
-    app:stokeWidth="2dp"
+    app:strokeWidth="2dp"
     app:cardBackgroundColor="@color/baby_pink">
 
     <LinearLayout

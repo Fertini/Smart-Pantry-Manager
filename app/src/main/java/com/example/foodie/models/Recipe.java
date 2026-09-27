@@ -1,6 +1,8 @@
 package com.example.foodie.models;
+
+import java.io.Serializable;
 import java.util.*;
-public class Recipe {
+public class Recipe implements Serializable {
     int recipeId;
     String name;
     String description;

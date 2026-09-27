@@ -1,8 +1,9 @@
 package com.example.foodie.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class PantryItem {
+public class PantryItem implements Serializable {
     int pantryItemId;
     String name;
     int quantity;

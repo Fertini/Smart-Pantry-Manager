@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,13 +15,13 @@ import com.example.foodie.models.Recipe;
 import com.example.foodie.databinding.RecipeItemLayoutBinding;
 //import com.example.foodie.databinding.IngredientInstructionBinding;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RecipeDetailsFragment extends Fragment {
 
     private RecipeItemLayoutBinding binding;
 //    private IngredientInstructionCard cardBinding;
-    private final Recipe recipe = RecipeListFragment.getRecipeClicked();
+    private Recipe recipe;
 
     public RecipeDetailsFragment(){}
 
@@ -34,10 +36,15 @@ public class RecipeDetailsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-        super.onViewCreated(view, savedInstanceState);
+        // Get recipe from arguments
+        if (getArguments() != null) {
+            recipe = (Recipe) getArguments().getSerializable("recipe");
+        }
 
         // display recipe details
-        displayDetails();
+        if (recipe != null) {
+            displayDetails();
+        }
     }
 
     @Override
@@ -51,23 +58,24 @@ public class RecipeDetailsFragment extends Fragment {
     public void displayDetails(){
         binding.recipeName.setText(recipe.getName());
         binding.recipeDescription.setText(recipe.getDescription());
-//        binding.recipeIngredients.setText(displayIngredients());
-//        binding.recipeInstructions.setText(displayInstructions());
+        displayIngredients();
+        displayInstructions();
         binding.recipeDuration.setText(recipe.getDuration());
         binding.recipeServing.setText(recipe.getServingSize());
         binding.recipeCalories.setText(recipe.getCalories());
     }
 
-    public void displayIngredients(){
-        List<String> ingredients = recipe.getIngredients();
-
+    public String displayIngredients(){
+        ArrayList<String> ingredients = recipe.getIngredients();
+        StringBuilder ingredientsList = new StringBuilder();
         for (String item : ingredients){
-
+            ingredientsList.append(item).append("\n");
         }
+        return ingredientsList.toString();
     }
 
     public String displayInstructions(){
-        List<String> instructions = recipe.getInstructions();
+        ArrayList<String> instructions = recipe.getInstructions();
         StringBuilder instructionsList = new StringBuilder();
         String stepCount = "Step ";
         int count = 0;
@@ -79,5 +87,14 @@ public class RecipeDetailsFragment extends Fragment {
                     .append("\n");
         }
         return instructionsList.toString();
+    }
+
+    // method to safely pass over the data of the selected recipe to this fragment from the RecipeListFragment
+    public static RecipeDetailsFragment newInstance(Recipe recipe){
+        RecipeDetailsFragment fragment = new RecipeDetailsFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("recipe", recipe);
+        fragment.setArguments(args);
+        return fragment;
     }
 }

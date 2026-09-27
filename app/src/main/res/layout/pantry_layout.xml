@@ -32,6 +32,20 @@
         android:id="@+id/pantry_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/suggested_recipes_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:actionLayout="@layout/suggested_recipes_fragment"
+        android:paddingLeft="30dp"
+        android:layout_gravity="right"
+        app:icon="@drawable/ic_suggested_recipes"
+        app:iconSize="35dp"
+        app:iconTint="@color/lemon_chiffon"
+        app:backgroundTint="@color/bright_orange"
         />
 
 </LinearLayout>

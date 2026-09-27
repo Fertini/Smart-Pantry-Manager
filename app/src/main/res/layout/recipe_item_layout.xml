@@ -99,70 +99,105 @@
         android:paddingHorizontal="20dp"
         app:strokeWidth="2dp"
         app:strokeColor="@color/light_gold"
+        app:background="@color/lemon_chiffon"
+        app:cornerRadius="15dp"
         />
 
     <!-- recipe duration -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recipe_duration_label"
-        android:textSize="30sp"
-        android:textColor="@color/grapefruit_pink"
-        android:fontFamily="@font/bagel_fat"
-        android:paddingHorizontal="40dp"
-        />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/recipe_duration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/recipe_duration"
-        android:textColor="@color/ink_black"
-        android:textSize="18sp"
-        android:paddingHorizontal="20dp"
-        />
+        <TextView
+            android:id="@+id/duration_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_duration_label"
+            android:textSize="30sp"
+            android:textColor="@color/grapefruit_pink"
+            android:fontFamily="@font/bagel_fat"
+            android:paddingHorizontal="40dp"
+            />
+
+        <TextView
+            android:id="@+id/recipe_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_duration"
+            android:textColor="@color/ink_black"
+            android:textSize="18sp"
+            android:layout_marginBottom="7.5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/duration_label"
+            android:paddingHorizontal="20dp"
+            />
+
+    </RelativeLayout>
 
     <!-- recipe serving size -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recipe_serving_label"
-        android:textSize="30sp"
-        android:textColor="@color/grapefruit_pink"
-        android:fontFamily="@font/bagel_fat"
-        android:paddingHorizontal="40dp"
-        />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/recipe_serving"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/recipe_serving"
-        android:textColor="@color/ink_black"
-        android:textSize="18sp"
-        android:paddingHorizontal="20dp"
-        />
+
+        <TextView
+            android:id="@+id/serving_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_serving_label"
+            android:textSize="30sp"
+            android:textColor="@color/grapefruit_pink"
+            android:fontFamily="@font/bagel_fat"
+            android:paddingHorizontal="40dp"
+            />
+
+        <TextView
+            android:id="@+id/recipe_serving"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_serving"
+            android:textColor="@color/ink_black"
+            android:textSize="18sp"
+            android:layout_marginBottom="7.5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/serving_label"
+            android:paddingHorizontal="20dp"
+            />
+    </RelativeLayout>
 
     <!-- recipe calories -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recipe_calories_label"
-        android:textSize="30sp"
-        android:textColor="@color/grapefruit_pink"
-        android:fontFamily="@font/bagel_fat"
-        android:paddingHorizontal="40dp"
-        />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/recipe_calories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/recipe_calories"
-        android:textColor="@color/ink_black"
-        android:textSize="18sp"
-        android:paddingHorizontal="20dp"
-        />
+
+        <TextView
+            android:id="@+id/calories_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_calories_label"
+            android:textSize="30sp"
+            android:textColor="@color/grapefruit_pink"
+            android:fontFamily="@font/bagel_fat"
+            android:paddingHorizontal="40dp"
+            />
+
+        <TextView
+            android:id="@+id/recipe_calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_calories"
+            android:textColor="@color/ink_black"
+            android:textSize="18sp"
+            android:layout_marginBottom="7.5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/calories_label"
+            android:paddingHorizontal="20dp"
+            />
+    </RelativeLayout>
 
     <!-- edit button -->
     <Button
@@ -176,6 +211,7 @@
         android:fontFamily="@font/bagel_fat"
         android:padding="15dp"
         android:text="@string/edit_recipe_item"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:actionLayout="@layout/update_recipe_layout"/>
 
 </LinearLayout>

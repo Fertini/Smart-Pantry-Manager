@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Foodie</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
+
+    <!-- fragment labels -->
     <string name="recipes_label">Recipes</string>
+    <string name="suggested_recipes_label">Suggested Recipes</string>
     <string name="pantry_label">Pantry</string>
     <string name="settings_label">Settings</string>
     <string name="save">Save</string>
@@ -46,5 +48,6 @@
     <string name="add_btn">Add</string>
     <string name="edit_btn">Edit</string>
     <string name="delete_btn">Delete</string>
+    <string name="suggested_btn">Suggested Recipes</string>
 
 </resources>

@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.foodie.R;
 import com.example.foodie.databinding.PantryLayoutBinding;
 import com.example.foodie.managers.PantryAdapter;
 import com.example.foodie.models.PantryItem;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PantryListFragment extends Fragment {
-    public static PantryItem itemClicked;
     private PantryLayoutBinding binding;
     private PantryAdapter adapter;
 
@@ -53,9 +53,16 @@ public class PantryListFragment extends Fragment {
     }
 
     // ========== class methods ========== //
-    private void setupRecyclerView(){
+    private void setupRecyclerView(){ // setting up recycler view and displaying item details on click
         List<PantryItem> pantryList = new ArrayList<>();
-        adapter = new PantryAdapter(pantryList, pantryItem -> itemClicked = pantryItem);
+        adapter = new PantryAdapter(pantryList, pantryItem -> {
+            PantryItemDetailsFragment pantryItemDetailsFragment = PantryItemDetailsFragment.newInstance(pantryItem);
+
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, pantryItemDetailsFragment)
+                    .addToBackStack(null)
+                    .commit();
+        });
 
         binding.pantryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.pantryRecyclerView.setAdapter(adapter);
@@ -65,11 +72,4 @@ public class PantryListFragment extends Fragment {
         List<PantryItem> pantryItems = PantryItemDAO.getAll();
         adapter.updateList(pantryItems);
     }
-
-    public static PantryItem getItemClicked(){
-        return itemClicked;
-    }
-
-
-
 }

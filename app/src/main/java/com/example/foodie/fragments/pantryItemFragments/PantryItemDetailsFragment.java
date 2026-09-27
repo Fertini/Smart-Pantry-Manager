@@ -10,12 +10,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodie.databinding.PantryItemLayoutBinding;
+import com.example.foodie.fragments.recipeFragments.RecipeDetailsFragment;
 import com.example.foodie.models.PantryItem;
 
 public class PantryItemDetailsFragment extends Fragment {
 
     private PantryItemLayoutBinding binding;
-    private final PantryItem pantryItem = PantryListFragment.getItemClicked();
+    private PantryItem pantryItem;
 
     public PantryItemDetailsFragment(){}
 
@@ -31,10 +32,15 @@ public class PantryItemDetailsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-        super.onViewCreated(view, savedInstanceState);
+        // get pantry items from arguments
+        if (getArguments() != null){
+            pantryItem = (PantryItem) getArguments().getSerializable("pantry_item");
+        }
 
         // displaying pantry item details
-        displayDetails();
+        if(pantryItem != null){
+            displayDetails();
+        }
     }
 
     @Override
@@ -51,5 +57,12 @@ public class PantryItemDetailsFragment extends Fragment {
         binding.pantryItemExpiryDate.setText(String.valueOf(pantryItem.getExpiryDate()));
     }
 
+    public static PantryItemDetailsFragment newInstance(PantryItem pantryItem){
+        PantryItemDetailsFragment fragment = new PantryItemDetailsFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("pantry_item", pantryItem);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 }
