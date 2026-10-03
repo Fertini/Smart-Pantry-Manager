@@ -29,8 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/cornsilk"
-        android:name="com.example.foodie.fragments.pantryItemFragments.PantryListFragment">
+        android:background="@color/cornsilk">
     </androidx.fragment.app.FragmentContainerView>
 
     <!-- Fixed bottom navigation panel -->

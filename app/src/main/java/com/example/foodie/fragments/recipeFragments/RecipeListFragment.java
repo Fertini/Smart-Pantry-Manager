@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.foodie.databinding.RecipesLayoutBinding;
@@ -47,6 +46,13 @@ public class RecipeListFragment extends Fragment {
 
         // loading recipes from the database
         loadRecipesFromDatabase();
+
+        binding.addRecipeBtn.setOnClickListener(btn -> {
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new AddRecipeFragment())
+                    .addToBackStack(null)
+                    .commit();
+        });
     }
 
     @Override
@@ -58,11 +64,11 @@ public class RecipeListFragment extends Fragment {
     // ========== Class Methods ========== //
     private void setupRecyclerView(){ // setting up recycler view and displaying recipe details on click
         List<Recipe> recipeList = new ArrayList<>();
-        adapter = new RecipeAdapter(recipeList, recipe -> {
-            RecipeDetailsFragment recipeDetailsFragment = RecipeDetailsFragment.newInstance(recipe);
+        adapter = new RecipeAdapter(recipeList, recipe -> {;
 
+            // redirect user the recipe details screen
             getParentFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, recipeDetailsFragment)
+                    .replace(R.id.fragment_container, RecipeDetailsFragment.newInstance(recipe))
                     .addToBackStack(null)
                     .commit();
 

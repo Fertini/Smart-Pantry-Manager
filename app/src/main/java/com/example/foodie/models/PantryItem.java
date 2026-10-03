@@ -1,17 +1,16 @@
 package com.example.foodie.models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class PantryItem implements Serializable {
     int pantryItemId;
     String name;
     int quantity;
     String unit;
-    LocalDate expiryDate;
+    String expiryDate;
 
     // constructor for existing pantry items
-    public PantryItem(int pantryItemId, String name, int quantity, String unit, LocalDate expiryDate){
+    public PantryItem(int pantryItemId, String name, int quantity, String unit, String expiryDate){
         this.pantryItemId = pantryItemId;
         this.name = name;
         this.quantity = quantity;
@@ -20,7 +19,7 @@ public class PantryItem implements Serializable {
     }
 
     // constructor for new pantry items
-    public PantryItem(String name, int quantity, String unit, LocalDate expiryDate){
+    public PantryItem(String name, int quantity, String unit, String expiryDate){
         this(0, name, quantity, unit, expiryDate);
     }
 
@@ -29,14 +28,14 @@ public class PantryItem implements Serializable {
     public String getName(){return name;}
     public int getQuantity(){return quantity;}
     public String getUnit(){return unit;}
-    public LocalDate getExpiryDate(){return expiryDate;}
+    public String getExpiryDate(){return expiryDate;}
 
     // ======================= setters ======================== //
     public void setPantryItemId(int pantryItemId){this.pantryItemId = pantryItemId;}
     public void setName(String name){this.name = name;}
     public void setQuantity(int quantity){this.quantity = quantity;}
     public void setUnit(String unit){this.unit = unit;}
-    public void setExpiryDate(LocalDate expiryDate){this.expiryDate = expiryDate;}
+    public void setExpiryDate(String expiryDate){this.expiryDate = expiryDate;}
 
     // ======================= methods ======================== //
 

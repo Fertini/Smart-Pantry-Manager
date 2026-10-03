@@ -7,7 +7,6 @@ import com.example.foodie.fragments.pantryItemFragments.PantryListFragment;
 import com.example.foodie.fragments.recipeFragments.RecipeListFragment;
 import com.example.foodie.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 

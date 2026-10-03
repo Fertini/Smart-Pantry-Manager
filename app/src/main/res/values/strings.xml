@@ -22,7 +22,7 @@
     <string name="recipe_calories_label">Calories</string>
 
     <!-- display text strings for recipes -->
-    <string name="recipe_name">Recipe_name</string>
+    <string name="recipe_name">recipe name</string>
     <string name="recipe_description">description</string>
     <string name="recipe_ingredients">ingredients</string>
     <string name="recipe_instructions">instructions</string>
@@ -34,13 +34,13 @@
     <string name="pantry_item_name_label">Pantry item name</string>
     <string name="pantry_item_quantity_label">Quantity</string>
     <string name="pantry_item_unit_label">Unit</string>
-    <string name="pantry_item_expiry_label">Expiry_date</string>
+    <string name="pantry_item_expiry_label">Expiry date</string>
 
     <!-- display text strings for pantry items -->
-    <string name="pantry_item_name">Pantry_item_name</string>
+    <string name="pantry_item_name">pantry item name</string>
     <string name="pantry_item_quantity">quantity</string>
     <string name="pantry_item_unit">unit</string>
-    <string name="pantry_item_expiry">expiry_date</string>
+    <string name="pantry_item_expiry">DD/MM/YYYY</string>
 
     <!-- buttons -->
     <string name="edit_pantry_item">Edit Pantry Item</string>

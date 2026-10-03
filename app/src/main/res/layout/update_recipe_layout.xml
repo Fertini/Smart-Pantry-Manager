@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.recipeFragments.EditRecipeFragment">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="10dp"
     tools:context=".fragments.recipeFragments.EditRecipeFragment">
 
     <!-- recipe name -->
-    <androidx.cardview.widget.CardView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="5dp">
+        android:text="@string/recipe_name_label"
+        android:textSize="30sp"
+        android:textColor="@color/grapefruit_pink"
+        android:fontFamily="@font/bagel_fat"
+        android:paddingHorizontal="40dp"
+        />
 
-        <TextView
-            android:id="@+id/recipe_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/recipe_name"
-            android:textSize="28sp"
-            android:background="@color/bright_orange"
-            android:textStyle="italic|normal"
-            android:fontFamily="@font/bagel_fat"
-            android:textColor="@color/mint_cream"
-            android:paddingVertical="5dp"
-            />
-
-    </androidx.cardview.widget.CardView>
+    <EditText
+        android:id="@+id/recipe_name"
+        android:inputType="text"
+        android:hint="@string/recipe_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/dusty_grey"
+        android:textSize="20sp"
+        android:paddingHorizontal="20dp"
+        />
 
     <!-- recipe description -->
     <TextView
@@ -49,10 +50,9 @@
         android:id="@+id/recipe_description"
         android:inputType="text"
         android:hint="@string/recipe_description"
-        android:autofillHints="@string/recipe_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/ink_black"
+        android:textColorHint="@color/dusty_grey"
         android:textSize="20sp"
         android:paddingHorizontal="20dp"
         />
@@ -68,17 +68,24 @@
         android:paddingHorizontal="40dp"
         />
 
-    <EditText
-        android:id="@+id/recipe_ingredients"
-        android:inputType="text"
-        android:hint="@string/recipe_ingredients"
-        android:autofillHints="@string/recipe_ingredients"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/ink_black"
-        android:textSize="20sp"
         android:paddingHorizontal="20dp"
-        />
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/light_gold"
+        app:cardCornerRadius="7dp"
+        app:cardBackgroundColor="@color/lemon_chiffon">
+        <TextView
+            android:id="@+id/recipe_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_ingredients"
+            android:textColor="@color/ink_black"
+            android:textSize="20sp"
+            android:padding="10dp"
+            />
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- recipe instructions -->
     <TextView
@@ -91,88 +98,122 @@
         android:paddingHorizontal="40dp"
         />
 
-    <EditText
-        android:id="@+id/recipe_instructions"
-        android:inputType="text"
-        android:hint="@string/recipe_instructions"
-        android:autofillHints="@string/recipe_instructions"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/ink_black"
-        android:textSize="20sp"
         android:paddingHorizontal="20dp"
-
-        />
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/light_gold"
+        app:cardBackgroundColor="@color/lemon_chiffon"
+        app:cardCornerRadius="7dp"
+        >
+        <TextView
+            android:id="@+id/recipe_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_instructions"
+            android:textColor="@color/ink_black"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:background="@color/lemon_chiffon"
+            />
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- recipe duration -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recipe_duration_label"
-        android:textSize="30sp"
-        android:textColor="@color/grapefruit_pink"
-        android:fontFamily="@font/bagel_fat"
-        android:paddingHorizontal="40dp"
-        />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/recipe_duration"
-        android:inputType="text"
-        android:hint="@string/recipe_duration"
-        android:autofillHints="@string/recipe_duration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/ink_black"
-        android:textSize="20sp"
-        android:paddingHorizontal="20dp"
-        />
+        <TextView
+            android:id="@+id/duration_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_duration_label"
+            android:textSize="30sp"
+            android:textColor="@color/grapefruit_pink"
+            android:fontFamily="@font/bagel_fat"
+            android:paddingHorizontal="40dp"
+            />
+
+        <TextView
+            android:id="@+id/recipe_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_duration"
+            android:textColor="@color/ink_black"
+            android:textSize="18sp"
+            android:layout_marginBottom="7.5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/duration_label"
+            android:paddingHorizontal="20dp"
+            />
+
+    </RelativeLayout>
 
     <!-- recipe serving size -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recipe_serving_label"
-        android:textSize="30sp"
-        android:textColor="@color/grapefruit_pink"
-        android:fontFamily="@font/bagel_fat"
-        android:paddingHorizontal="40dp"
-        />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/recipe_serving"
-        android:inputType="text"
-        android:hint="@string/recipe_serving"
-        android:autofillHints="@string/recipe_serving"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/ink_black"
-        android:textSize="20sp"
-        android:paddingHorizontal="20dp"
-        />
+
+        <TextView
+            android:id="@+id/serving_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_serving_label"
+            android:textSize="30sp"
+            android:textColor="@color/grapefruit_pink"
+            android:fontFamily="@font/bagel_fat"
+            android:paddingHorizontal="40dp"
+            />
+
+        <TextView
+            android:id="@+id/recipe_serving"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_serving"
+            android:textColor="@color/ink_black"
+            android:textSize="18sp"
+            android:layout_marginBottom="7.5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/serving_label"
+            android:paddingHorizontal="20dp"
+            />
+    </RelativeLayout>
 
     <!-- recipe calories -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recipe_calories_label"
-        android:textSize="30sp"
-        android:textColor="@color/grapefruit_pink"
-        android:fontFamily="@font/bagel_fat"
-        android:paddingHorizontal="40dp"
-        />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/recipe_calories"
-        android:labelFor="@id/recipe_calories"
-        android:inputType="text"
-        android:hint="@string/recipe_calories"
-        android:autofillHints="@string/recipe_calories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/ink_black"
-        android:textSize="20sp"
-        android:paddingHorizontal="20dp"
-        />
+
+        <TextView
+            android:id="@+id/calories_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_calories_label"
+            android:textSize="30sp"
+            android:textColor="@color/grapefruit_pink"
+            android:fontFamily="@font/bagel_fat"
+            android:paddingHorizontal="40dp"
+            />
+
+        <TextView
+            android:id="@+id/recipe_calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_calories"
+            android:textColor="@color/ink_black"
+            android:textSize="18sp"
+            android:layout_marginBottom="7.5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/calories_label"
+            android:paddingHorizontal="20dp"
+            />
+    </RelativeLayout>
 
     <!-- save button -->
     <Button
@@ -186,6 +227,8 @@
         android:fontFamily="@font/bagel_fat"
         android:padding="15dp"
         android:text="@string/save"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/mint_cream"/>
 
 </LinearLayout>
+</ScrollView>

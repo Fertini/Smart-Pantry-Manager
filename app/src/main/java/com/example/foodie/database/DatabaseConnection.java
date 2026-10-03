@@ -69,7 +69,7 @@ public class DatabaseConnection extends SQLiteOpenHelper {
                 "pantry_item_name TEXT NOT NULL, " +
                 "quantity INTEGER NOT NULL, " +
                 "unit TEXT NOT NULL, " +
-                "expiry_date DATE NOT NULL)";
+                "expiry_date TEXT NOT NULL)";
         db.execSQL(createPantrySQL);
 
         // Create recipes table
@@ -93,8 +93,8 @@ public class DatabaseConnection extends SQLiteOpenHelper {
     // Handle database upgrades
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS pantry_items");
-        db.execSQL("DROP TABLE IF EXISTS recipes");
+        db.execSQL("DROP TABLE IF EXISTS Pantry_Items");
+        db.execSQL("DROP TABLE IF EXISTS Recipes");
         onCreate(db);
     }
 

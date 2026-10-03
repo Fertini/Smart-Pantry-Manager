@@ -1,6 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.pantryItemFragments.AddPantryItemFragment" >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp" >
+
+        <!-- item name -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pantry_item_name_label"
+            android:textSize="30sp"
+            android:textColor="@color/grapefruit_pink"
+            android:fontFamily="@font/bagel_fat"
+            android:paddingHorizontal="40dp" />
+
+        <EditText
+            android:id="@+id/pantry_item_name"
+            android:inputType="text"
+            android:hint="@string/pantry_item_name"
+            android:textColorHint="@color/dusty_grey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ink_black"
+            android:textSize="20sp"
+            android:paddingHorizontal="20dp" />
+
+        <!-- item quantity -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pantry_item_quantity_label"
+            android:textSize="30sp"
+            android:textColor="@color/grapefruit_pink"
+            android:fontFamily="@font/bagel_fat"
+            android:paddingHorizontal="40dp" />
+
+        <EditText
+            android:id="@+id/pantry_item_quantity"
+            android:inputType="number"
+            android:hint="@string/pantry_item_quantity"
+            android:textColorHint="@color/dusty_grey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ink_black"
+            android:textSize="20sp"
+            android:paddingHorizontal="20dp" />
+
+        <!-- item unit -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pantry_item_unit_label"
+            android:textSize="30sp"
+            android:textColor="@color/grapefruit_pink"
+            android:fontFamily="@font/bagel_fat"
+            android:paddingHorizontal="40dp" />
+
+        <Spinner
+            android:id="@+id/pantry_item_unit"
+            android:inputType="text"
+            android:hint="@string/pantry_item_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ink_black"
+            android:textSize="20sp"
+            android:paddingHorizontal="20dp" />
+
+
+        <!-- item expiry -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pantry_item_expiry_label"
+            android:textSize="30sp"
+            android:textColor="@color/grapefruit_pink"
+            android:fontFamily="@font/bagel_fat"
+            android:paddingHorizontal="40dp" />
+
+        <EditText
+            android:id="@+id/pantry_item_expiry_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|date"
+            android:hint="@string/pantry_item_expiry"
+            android:autofillHints="@string/pantry_item_expiry"
+            android:textColorHint="@color/dusty_grey"
+            android:textColor="@color/ink_black"
+            android:textSize="20sp"
+            android:paddingHorizontal="20dp"
+        />
+
+        <!-- save button -->
+        <Button
+            android:id="@+id/add_pantry_item_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="70dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginVertical="20dp"
+            android:backgroundTint="@color/blush_pop"
+            android:fontFamily="@font/bagel_fat"
+            android:padding="10dp"
+            android:text="@string/add_btn"
+            android:textSize="20sp"
+            android:textColor="@color/mint_cream"
+            android:actionLayout="@layout/pantry_item_layout" />
+
+    </LinearLayout>
+</ScrollView>

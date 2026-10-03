@@ -1,6 +1,7 @@
 package com.example.foodie.fragments.recipeFragments;
 
 import android.os.Bundle;
+import android.text.style.TtsSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,14 +64,20 @@ public class SuggestedRecipesFragment extends Fragment {
     private void setupRecyclerView(){ // setting up recycler view and displaying recipe details on click
         List<Recipe> recipeList = new ArrayList<>();
         adapter = new RecipeAdapter(recipeList, recipe -> {
-            RecipeDetailsFragment recipeDetailsFragment = RecipeDetailsFragment.newInstance(recipe);
 
+            // redirect user the recipe details screen
             getParentFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, recipeDetailsFragment)
+                    .replace(R.id.fragment_container, RecipeDetailsFragment.newInstance(recipe))
                     .addToBackStack(null)
                     .commit();
 
         });
+
+        if(recipeList.isEmpty()){ // if there are no matching recipes
+//            binding.recipeRecyclerView.addView( view ->{
+//
+//            });
+        }
 
         binding.recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recipeRecyclerView.setAdapter(adapter);
@@ -103,13 +110,13 @@ public class SuggestedRecipesFragment extends Fragment {
             // Find best match for this ingredient
             for (PantryItem pantryItem : DBpantry) {
                 int distance = BasicMatcher.getLevenshteinDistance(
-                        pantryItem.getName().toLowerCase(),
+                        pantryItem.getQuantity()+pantryItem.getUnit()+pantryItem.getName().toLowerCase(),
                         ingredient.toLowerCase()
                 );
 
                 // only assign if the match is better than the previous match,
                 // if the item has not been matched only if it is within the distance threshold
-                if (distance < bestDistance && distance <= 2 && !matchedItems.contains(pantryItem)) {
+                if (distance < bestDistance && distance <= 4 && !matchedItems.contains(pantryItem)) {
                     bestMatch = pantryItem;
                     bestDistance = distance;
                 }

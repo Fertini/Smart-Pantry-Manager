@@ -49,7 +49,8 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
 
         public void bind(PantryItem pantryItem){
             binding.pantryItemName.setText(pantryItem.getName());
-            binding.pantryItemQuantity.setText(pantryItem.getQuantity());
+            binding.pantryItemQuantity.setText(String.valueOf(pantryItem.getQuantity()));
+            binding.pantryItemUnit.setText(pantryItem.getUnit());
 
             // handling clicks on pantryItem items
             itemView.setOnClickListener(v -> {

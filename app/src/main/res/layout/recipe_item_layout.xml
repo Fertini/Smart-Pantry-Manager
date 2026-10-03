@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".fragments.recipeFragments.RecipeDetailsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,19 +74,20 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="20dp"
+            android:padding="10dp"
             app:strokeWidth="2dp"
             app:strokeColor="@color/light_gold"
-            app:cardCornerRadius="7dp">
+            app:cardCornerRadius="7dp"
+            app:cardBackgroundColor="@color/lemon_chiffon">
             <TextView
                 android:id="@+id/recipe_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
                 android:text="@string/recipe_ingredients"
                 android:textColor="@color/ink_black"
                 android:textSize="18sp"
                 android:paddingHorizontal="20dp"
-                android:background="@color/lemon_chiffon"
                 />
         </com.google.android.material.card.MaterialCardView>
 
@@ -106,7 +108,7 @@
             android:paddingHorizontal="20dp"
             app:strokeWidth="2dp"
             app:strokeColor="@color/light_gold"
-            app:backgroundTint="@color/lemon_chiffon"
+            app:cardBackgroundColor="@color/lemon_chiffon"
             app:cornerRadius="7dp"
             >
             <TextView
@@ -116,8 +118,8 @@
                 android:text="@string/recipe_instructions"
                 android:textColor="@color/ink_black"
                 android:textSize="18sp"
+                android:paddingVertical="10dp"
                 android:paddingHorizontal="20dp"
-                android:background="@color/lemon_chiffon"
                 />
         </com.google.android.material.card.MaterialCardView>
 
@@ -227,10 +229,25 @@
             android:layout_marginVertical="20dp"
             android:backgroundTint="@color/blush_pop"
             android:fontFamily="@font/bagel_fat"
-            android:padding="15dp"
+            android:padding="10dp"
             android:text="@string/edit_recipe_item"
-            android:textSize="18sp"
+            android:textSize="20sp"
+            android:textColor="@color/mint_cream"
             android:actionLayout="@layout/update_recipe_layout"/>
 
+        <!-- delete button -->
+        <Button
+            android:id="@+id/delete_recipe_item_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="70dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginVertical="20dp"
+            android:backgroundTint="@color/grapefruit_pink"
+            android:fontFamily="@font/bagel_fat"
+            android:padding="15dp"
+            android:text="@string/delete_btn"
+            android:textSize="18sp"
+            android:textColor="@color/mint_cream"/>
     </LinearLayout>
 </ScrollView>

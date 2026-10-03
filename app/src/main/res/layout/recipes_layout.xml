@@ -10,6 +10,7 @@
 
     <!-- recipes heading -->
     <androidx.cardview.widget.CardView
+        android:id="@+id/heading_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
@@ -29,13 +30,37 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!-- recipe list -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recipe_recycler_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        />
+        android:layout_height="wrap_content">
 
+        <!-- recipe list -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recipe_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+
+        <!-- add btn -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_recipe_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:backgroundTint="@color/sky_blue"
+            android:text="@string/add_btn"
+            android:textSize="18sp"
+            android:textColor="@color/mint_cream"
+            android:fontFamily="@font/bagel_fat"
+            android:elevation="5dp"
+            app:icon="@drawable/ic_suggested_recipes"
+            app:iconSize="35dp"
+            app:iconTint="@color/mint_cream"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
 
 </LinearLayout>

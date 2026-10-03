@@ -4,21 +4,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.foodie.R;
+import com.example.foodie.database.RecipeDAO;
 import com.example.foodie.models.Recipe;
 import com.example.foodie.databinding.RecipeItemLayoutBinding;
-//import com.example.foodie.databinding.IngredientInstructionBinding;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 
 public class RecipeDetailsFragment extends Fragment {
 
     private RecipeItemLayoutBinding binding;
-//    private IngredientInstructionCard cardBinding;
     private Recipe recipe;
 
     public RecipeDetailsFragment(){}
@@ -43,6 +45,44 @@ public class RecipeDetailsFragment extends Fragment {
         if (recipe != null) {
             displayDetails();
         }
+
+        binding.editRecipeItemBtn.setOnClickListener(btn ->{;
+
+            // redirect user to the edit recipe screen
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, EditRecipeFragment.newInstance(recipe))
+                    .addToBackStack(null)
+                    .commit();
+        });
+
+        binding.deleteRecipeItemBtn.setOnClickListener(btn ->{
+            new MaterialAlertDialogBuilder(getContext()) // confirmation for deletion
+                    .setTitle("Delete Item")
+                    .setMessage("Are you sure you want to delete this recipe?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+
+                        RecipeDAO.init(getContext());
+                        boolean result = RecipeDAO.deleteRecipe(recipe.getRecipeId()); // delete in database
+
+                        if (result) { // if recipe is successfully deleted
+                            getParentFragmentManager().beginTransaction() // redirect user to the recipe list
+                                    .replace(R.id.fragment_container, new RecipeListFragment())
+                                    .addToBackStack(null)
+                                    .commit();
+                            Toast.makeText(getContext(), "Successfully deleted recipe", Toast.LENGTH_SHORT).show(); // success message
+
+                        } else {
+                            new MaterialAlertDialogBuilder(getContext())
+                                    .setTitle("Operation Failed")
+                                    .setMessage("Failed to delete recipe")
+                                    .setPositiveButton("Ok", null)
+                                    .show(); // failure message
+                        }
+                    })
+                    .setNegativeButton("No", null) // cancel operation
+                    .show()
+                    .setCanceledOnTouchOutside(false);
+        });
     }
 
     @Override
@@ -54,8 +94,8 @@ public class RecipeDetailsFragment extends Fragment {
     // ========== Class Methods ========== //
 
     public void displayDetails(){
-        String calories = recipe.getCalories() + "/per serving";
         String duration = recipe.getDuration() + " minutes";
+        String calories = recipe.getCalories() + " per serving";
 
         binding.recipeName.setText(recipe.getName());
         binding.recipeDescription.setText(recipe.getDescription());
@@ -91,7 +131,7 @@ public class RecipeDetailsFragment extends Fragment {
         return instructionsList.toString();
     }
 
-    // method to safely pass over the data of the selected recipe to this fragment from the RecipeListFragment
+    // method to safely pass over the data of the selected recipe to this fragment from the another Fragment
     public static RecipeDetailsFragment newInstance(Recipe recipe){
         RecipeDetailsFragment fragment = new RecipeDetailsFragment();
         Bundle args = new Bundle();

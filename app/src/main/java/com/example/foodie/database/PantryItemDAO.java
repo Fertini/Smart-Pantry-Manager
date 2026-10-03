@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.foodie.models.PantryItem;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class PantryItemDAO {
                         cursor.getString(cursor.getColumnIndexOrThrow("pantry_item_name")),
                         cursor.getInt(cursor.getColumnIndexOrThrow("quantity")),
                         cursor.getString(cursor.getColumnIndexOrThrow("unit")),
-                        LocalDate.parse(cursor.getString(cursor.getColumnIndexOrThrow("expiry_date")))
+                        cursor.getString(cursor.getColumnIndexOrThrow("expiry_date"))
                 );
                 pantryItems.add(pantryItem);
             }
@@ -54,14 +53,13 @@ public class PantryItemDAO {
 
         try (Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(pantryItemId)})) {
             if (cursor.moveToNext()) {
-                PantryItem pantryItem = new PantryItem(
+                return new PantryItem(
                         cursor.getInt(cursor.getColumnIndexOrThrow("pantry_item_id")),
                         cursor.getString(cursor.getColumnIndexOrThrow("pantry_item_name")),
                         cursor.getInt(cursor.getColumnIndexOrThrow("quantity")),
                         cursor.getString(cursor.getColumnIndexOrThrow("unit")),
-                        LocalDate.parse(cursor.getString(cursor.getColumnIndexOrThrow("expiry_date")))
+                        cursor.getString(cursor.getColumnIndexOrThrow("expiry_date"))
                 );
-                return pantryItem;
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -84,7 +82,7 @@ public class PantryItemDAO {
                         cursor.getString(cursor.getColumnIndexOrThrow("pantry_item_name")),
                         cursor.getInt(cursor.getColumnIndexOrThrow("quantity")),
                         cursor.getString(cursor.getColumnIndexOrThrow("unit")),
-                        LocalDate.parse(cursor.getString(cursor.getColumnIndexOrThrow("expiry_date")))
+                        cursor.getString(cursor.getColumnIndexOrThrow("expiry_date"))
                 );
                 pantryItems.add(pantryItem);
             }
@@ -106,7 +104,7 @@ public class PantryItemDAO {
             values.put("pantry_item_name", pantryItem.getName());
             values.put("quantity", pantryItem.getQuantity());
             values.put("unit", pantryItem.getUnit());
-            values.put("expiry_date", pantryItem.getExpiryDate().toString());
+            values.put("expiry_date", pantryItem.getExpiryDate());
 
             long result = db.insert("Pantry_Items", null, values);
             if (result > 0) {
@@ -131,7 +129,7 @@ public class PantryItemDAO {
             values.put("pantry_item_name", pantryItem.getName());
             values.put("quantity", pantryItem.getQuantity());
             values.put("unit", pantryItem.getUnit());
-            values.put("expiry_date", pantryItem.getExpiryDate().toString());
+            values.put("expiry_date", pantryItem.getExpiryDate());
 
             int rowsUpdated = db.update("Pantry_Items", values,
                     "pantry_item_id = ?",
@@ -164,7 +162,7 @@ public class PantryItemDAO {
                         cursor.getString(cursor.getColumnIndexOrThrow("pantry_item_name")),
                         cursor.getInt(cursor.getColumnIndexOrThrow("quantity")),
                         cursor.getString(cursor.getColumnIndexOrThrow("unit")),
-                        LocalDate.parse(cursor.getString(cursor.getColumnIndexOrThrow("expiry_date")))
+                        cursor.getString(cursor.getColumnIndexOrThrow("expiry_date"))
                 );
                 pantryItems.add(pantryItem);
             }

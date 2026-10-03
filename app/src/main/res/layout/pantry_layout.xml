@@ -34,18 +34,44 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/suggested_recipes_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:actionLayout="@layout/suggested_recipes_fragment"
-        android:paddingLeft="30dp"
-        android:layout_gravity="right"
-        app:icon="@drawable/ic_suggested_recipes"
-        app:iconSize="35dp"
-        app:iconTint="@color/lemon_chiffon"
-        app:backgroundTint="@color/bright_orange"
-        />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/suggested_recipes_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:actionLayout="@layout/suggested_recipes_fragment"
+            android:paddingLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/suggested_btn"
+            android:textSize="18sp"
+            android:fontFamily="@font/bagel_fat"
+            android:textColor="@color/lemon_chiffon"
+            app:icon="@drawable/ic_suggested_recipes"
+            app:iconSize="35dp"
+            app:iconTint="@color/lemon_chiffon"
+            app:backgroundTint="@color/bright_orange"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_pantry_item_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:actionLayout="@layout/add_pantry_item_layout"
+            android:paddingLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:text="@string/add_btn"
+            android:textSize="18sp"
+            android:fontFamily="@font/bagel_fat"
+            android:textColor="@color/lemon_chiffon"
+            app:icon="@drawable/ic_suggested_recipes"
+            app:iconSize="35dp"
+            app:iconTint="@color/lemon_chiffon"
+            app:backgroundTint="@color/grapefruit_pink"
+            />
+    </RelativeLayout>
+
 
 </LinearLayout>
