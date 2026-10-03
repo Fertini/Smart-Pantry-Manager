@@ -57,17 +57,28 @@ public class PantryListFragment extends Fragment {
         // loading pantry Items from the database
         loadPantryItemsFromDatabase();
 
+        // check if alerts should be created
+        AlertViewModel alertsViewModel = new ViewModelProvider(requireActivity()).get(AlertViewModel.class); // bool value to check if alerts should still be sent, to prevent duplicate notifications
+
         // receive and check settings and display alerts
         SharedPreferences sharedPreferences = requireContext()
                 .getSharedPreferences("save", Context.MODE_PRIVATE);
-
-
         // read the persisted value on startup
         boolean alertsEnabled = sharedPreferences.getBoolean("value", true);
-        AlertViewModel alertsViewModel = new ViewModelProvider(requireActivity()).get(AlertViewModel.class); // bool value to check if alerts should still be sent, to prevent duplicate notifications
         if(alertsEnabled && alertsViewModel.shouldShowAlerts()){
             getExpiring();
         }
+
+        // read changes in real time
+        getParentFragmentManager().setFragmentResultListener(
+                "requestKey", getViewLifecycleOwner(), (requestKey, bundle) -> {
+                    boolean result = bundle.getBoolean("alert_setting");
+                    if(result && alertsViewModel.shouldShowAlerts()){
+                        getExpiring();
+                    }
+                });
+
+
 
         // ------- btn onclick listeners --------- //
         binding.addPantryItemBtn.setOnClickListener(btn -> {
