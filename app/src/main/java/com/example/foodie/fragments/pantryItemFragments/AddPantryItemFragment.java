@@ -148,19 +148,19 @@ public class AddPantryItemFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 if(updating) return;
-                // 1. How many digits are before the cursor?
+                // check how many digits are before the cursor?
                 int cursor = Math.max(date.getSelectionStart(), 0);
                 int digitsBeforeCursor = 0;
                 for (int i = 0; i < cursor && i < s.length(); i++) {
                     if (Character.isDigit(s.charAt(i))) digitsBeforeCursor++;
                 }
 
-                // 2. Keep digits only, max 8
+                // keep digits only, max 8 digits for full date
                 String digits = s.toString().replaceAll("\\D", "");
                 if (digits.length() > 8) digits = digits.substring(0, 8);
                 digitsBeforeCursor = Math.min(digitsBeforeCursor, digits.length());
 
-                // 3. Validate only when the date is complete
+                // Validate only when the date is complete
                 if (digits.length() == 8) {
                     int day   = Integer.parseInt(digits.substring(0, 2));
                     int month = Integer.parseInt(digits.substring(2, 4));
@@ -177,7 +177,7 @@ public class AddPantryItemFragment extends Fragment {
                     digits = String.format(Locale.ENGLISH, "%02d%02d%04d", day, month, year);
                 }
 
-                // 4. Rebuild with slashes (only add a slash when more digits follow)
+                // Rebuild date with slashes (only add a slash when more digits follow)
                 StringBuilder sb = new StringBuilder();
                 int newCursor = 0, digitsSeen = 0;
                 for (int i = 0; i < digits.length(); i++) {
@@ -188,7 +188,7 @@ public class AddPantryItemFragment extends Fragment {
                 }
                 if (digitsBeforeCursor == 0) newCursor = 0;
 
-                // 5. Apply to the Editable directly, without setText()
+                // Apply to the Editable directly, without setText()
                 String formatted = sb.toString();
                 if (!formatted.equals(s.toString())) {
                     updating = true;
