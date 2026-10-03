@@ -42,7 +42,7 @@
             android:id="@+id/suggested_recipes_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:actionLayout="@layout/suggested_recipes_fragment"
+            android:actionLayout="@layout/recipes_layout"
             android:paddingLeft="10dp"
             android:layout_alignParentRight="true"
             android:text="@string/suggested_btn"

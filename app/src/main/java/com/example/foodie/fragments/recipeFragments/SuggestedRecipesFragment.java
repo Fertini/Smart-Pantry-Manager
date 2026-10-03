@@ -1,7 +1,6 @@
 package com.example.foodie.fragments.recipeFragments;
 
 import android.os.Bundle;
-import android.text.style.TtsSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.foodie.database.PantryItemDAO;
 import com.example.foodie.databinding.RecipesLayoutBinding;
 import com.example.foodie.R;
-import com.example.foodie.managers.BasicMatcher;
 import com.example.foodie.managers.RecipeAdapter;
+import com.example.foodie.managers.TextCleaner;
 import com.example.foodie.models.PantryItem;
 import com.example.foodie.models.Recipe;
 import com.example.foodie.database.RecipeDAO;
@@ -52,6 +51,7 @@ public class SuggestedRecipesFragment extends Fragment {
 
         // loading recipes from the database
         loadRecipesFromDatabase();
+
     }
 
     @Override
@@ -63,6 +63,7 @@ public class SuggestedRecipesFragment extends Fragment {
     // ========== Class Methods ========== //
     private void setupRecyclerView(){ // setting up recycler view and displaying recipe details on click
         List<Recipe> recipeList = new ArrayList<>();
+
         adapter = new RecipeAdapter(recipeList, recipe -> {
 
             // redirect user the recipe details screen
@@ -73,12 +74,6 @@ public class SuggestedRecipesFragment extends Fragment {
 
         });
 
-        if(recipeList.isEmpty()){ // if there are no matching recipes
-//            binding.recipeRecyclerView.addView( view ->{
-//
-//            });
-        }
-
         binding.recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recipeRecyclerView.setAdapter(adapter);
     }
@@ -88,7 +83,7 @@ public class SuggestedRecipesFragment extends Fragment {
         List<Recipe> recipeList = new ArrayList<>();
 
         for (Recipe recipe : DBrecipeList){
-            if(hasIngredients(recipe)){
+            if(hasIngredients(recipe, PantryItemDAO.getAll())){
                 recipeList.add(recipe);
             }
         }
@@ -96,39 +91,20 @@ public class SuggestedRecipesFragment extends Fragment {
         adapter.updateList(recipeList);
     }
 
-    private boolean hasIngredients(Recipe recipe) {
-        List<PantryItem> DBpantry = PantryItemDAO.getAll();
-        List<String> requiredIngredients = recipe.getIngredients();
+    private boolean hasIngredients(Recipe recipe, List<PantryItem> pantry) {
+        Set<PantryItem> used = new HashSet<>();
 
-        // Track which pantry items have been matched
-        Set<PantryItem> matchedItems = new HashSet<>();
-
-        for (String ingredient : requiredIngredients) {
-            PantryItem bestMatch = null;
-            int bestDistance = Integer.MAX_VALUE;
-
-            // Find best match for this ingredient
-            for (PantryItem pantryItem : DBpantry) {
-                int distance = BasicMatcher.getLevenshteinDistance(
-                        pantryItem.getQuantity()+pantryItem.getUnit()+pantryItem.getName().toLowerCase(),
-                        ingredient.toLowerCase()
-                );
-
-                // only assign if the match is better than the previous match,
-                // if the item has not been matched only if it is within the distance threshold
-                if (distance < bestDistance && distance <= 4 && !matchedItems.contains(pantryItem)) {
-                    bestMatch = pantryItem;
-                    bestDistance = distance;
+        for (String ingredient : recipe.getIngredients()) {
+            PantryItem match = null;
+            for (PantryItem item : pantry) {
+                if (!used.contains(item) && TextCleaner.namesMatch(ingredient, item.getName())) {
+                    match = item;
+                    break;
                 }
             }
-
-            if (bestMatch == null) {
-                return false; // pantry is missing an ingredient
-            }
-
-            matchedItems.add(bestMatch); // Mark as used to avoid duplicate matching
+            if (match == null) return false;
+            used.add(match);
         }
-
-        return true; // All ingredients are in the pantry
+        return true;
     }
 }

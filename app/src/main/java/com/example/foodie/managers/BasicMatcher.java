@@ -1,6 +1,5 @@
 package com.example.foodie.managers;
 
-import java.util.Arrays;
 
 public class BasicMatcher {
     // Calculates Levenshtein Distance (lower score = closer match)

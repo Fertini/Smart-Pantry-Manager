@@ -34,8 +34,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- recipe list -->
+        <!-- text for no recipes -->
+        <TextView
+            android:id="@+id/no_recipes_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/dusty_grey"
+            android:text=""
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
 
+        <!-- recipe list -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipe_recycler_view"
             android:layout_width="match_parent"
