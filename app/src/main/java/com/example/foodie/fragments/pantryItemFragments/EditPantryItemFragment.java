@@ -60,11 +60,10 @@ public class EditPantryItemFragment extends Fragment {
 
             if(isValid()) {
 
-                String name = binding.pantryItemName.getText().toString().trim();
-                int quantity = Integer.parseInt(binding.pantryItemQuantity.getText().toString().trim());
-                String expiry = binding.pantryItemExpiryDate.getText().toString();
-                String unit = binding.pantryItemUnit.getSelectedItem().toString();
-                pantryItem = new PantryItem(name, quantity, unit, expiry); // create new pantryItem
+                pantryItem.setName(binding.pantryItemName.getText().toString().trim());
+                pantryItem.setQuantity(Integer.parseInt(binding.pantryItemQuantity.getText().toString().trim()));
+                pantryItem.setExpiryDate(binding.pantryItemExpiryDate.getText().toString());
+                pantryItem.setUnit(binding.pantryItemUnit.getSelectedItem().toString());
 
                 if(PantryItemDAO.updatePantryItem(pantryItem)){
                     Toast.makeText(getContext(), "Successfully updated item", Toast.LENGTH_SHORT);
