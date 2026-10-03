@@ -13,7 +13,7 @@ public class data {
 
             // Recipe 2: Garlic Bread
             "('Garlic Bread','Crispy exterior with soft, garlicky interior—the perfect side dish or snack.'," +
-            "'[\"1 loaf Bread\",\"Butter\",\"6 Garlic cloves\",\"Salt\",\"Black pepper\"]'," +
+            "'[\"1 loaf Bread\",\"Butter\",\"6 G arlic cloves\",\"Salt\",\"Black pepper\"]'," +
             "'[\"Preheat oven to 190°C\",\"Mix 4 tbsp of butter, finely chopped garlic, 1tsp of salt, and 1tsp pepper in a bowl\",\"Slice bread in half lengthwise\"," +
             "\"Spread garlic butter mixture evenly on cut sides\",\"Place on baking sheet cut-side up\",\"Bake for 8-10 minutes until golden and crispy\",\"Cool slightly before serving\"]'," +
             "15,4,285)," +

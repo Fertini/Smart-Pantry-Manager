@@ -52,6 +52,12 @@ public class SuggestedRecipesFragment extends Fragment {
         // loading recipes from the database
         loadRecipesFromDatabase();
 
+        int items = visibleItems();
+
+        if (items <= 0) {
+            binding.noRecipesText.setText("No recipes cater to the current items in the pantry.");
+        }
+
     }
 
     @Override
@@ -65,13 +71,11 @@ public class SuggestedRecipesFragment extends Fragment {
         List<Recipe> recipeList = new ArrayList<>();
 
         adapter = new RecipeAdapter(recipeList, recipe -> {
-
             // redirect user the recipe details screen
             getParentFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, RecipeDetailsFragment.newInstance(recipe))
                     .addToBackStack(null)
                     .commit();
-
         });
 
         binding.recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -106,5 +110,13 @@ public class SuggestedRecipesFragment extends Fragment {
             used.add(match);
         }
         return true;
+    }
+
+    private int visibleItems(){
+        if (binding.recipeRecyclerView.getAdapter() != null) {
+            return binding.recipeRecyclerView.getAdapter().getItemCount();
+        }
+
+        return 0;
     }
 }
