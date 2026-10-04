@@ -7,10 +7,15 @@
 I chose SQLite because it was the simpler and more lightweight option. At first I didn't realise it was built in and wanted to use MySQL because I had used it in a previous assignment and it had been some time since I used SQLite. However I didn't need MySQL because what I was doing was far simpler and didn't need the complexities of MySQL. Since my app does not require any cloud based services or internet connection, using a built-in option that stored the data locally was the more natural and better option for me.
 
 **Prerequisites**
+
 Android Studio - Quail 2 or newer
+
 Java Development Kit version 25 or newer
+
 Android min SDK: 26
+
 Android Target SDK: 36
+
 Compile SDK: 36
 
 **Set-Up Guidelines**
