@@ -14,13 +14,17 @@ Android Target SDK: 36
 Compile SDK: 36
 
 **Set-Up Guidelines**
+
 **Step 1:** Open Android Studio
+
 **Step 2:** Select the **Open** option, either on the welcome screen or under **File** and select the project's root folder **Foodie** and click **OK**
+
 **Step 3:** Allow Android Studio Built to automatically sync and if prompted, click **Trust Project**
 
 As the local.properties file has been removed from the project folder, Android Studio will automatically generate the file on the first successful sync.
 
 **Step 4:** If not triggered automatically, click **Sync Project with Gradle Files** to generate the necessary build and cache files.
+
 **Step 5:** Click **Build > Make Project** or Launch the app on an emulator/physical device
 
 
